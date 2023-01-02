@@ -1,0 +1,1 @@
+export const setLocalStorage = (inParam:string, inValue:any) => typeof window !== 'undefined' ? localStorage.setItem(inParam, inValue) : undefined
