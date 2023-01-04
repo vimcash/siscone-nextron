@@ -1,12 +1,11 @@
 import React from 'react'
-import { TemplateForm } from '../features/Template';
-
-const Home = () =>{
-  const pjson = require('../../package.json');
-  console.log(`version: ${pjson.version}`, `JWT_KEY: ${process.env.JWT_KEY}`)
-  return (
-    <TemplateForm />
-  )
+import { MenuContainer } from '../features/GenericApp/components'
+import { useAppDispatch } from '../hooks'
+import { setCurrPage } from '../states/globalState'
+const Home = () => {
+  const dispatch = useAppDispatch()
+  dispatch(setCurrPage('home'))
+  return <MenuContainer />
 }
 
 export default Home

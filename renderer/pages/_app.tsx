@@ -16,7 +16,8 @@ const MyApp = ({ Component, pageProps}:AppProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BBturn</title>
       </Head>
-      <div className='theme-1'>
+      <div className='theme-2'>
+        <div className='back'/>
         <ToastContainer />
         <Navbar title="Template"/>
         <hr />

@@ -1,0 +1,1 @@
+export { iconsByName } from './iconsByName'

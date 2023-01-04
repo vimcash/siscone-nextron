@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit"
-import templateReducer from "../../features/Template/states/templateState"
+import globalReducer from "../../states/globalState"
 const reducers = combineReducers({
-  template: templateReducer
+  global: globalReducer
 })
 
 export default reducers

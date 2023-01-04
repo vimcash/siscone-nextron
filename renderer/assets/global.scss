@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import './scss/theme-1.scss';
+@import './scss/theme-2.scss';
 @import './scss/responsiveSizes.scss';
+@import './scss/size.scss';
 
 .footer {
   background-color: var(--bsp-bg-footer);
@@ -9,6 +11,7 @@
   bottom: 0!important;
   width: 100%;
 }
+
 .theme-1, .theme-2 {
   .except {
     color: var(--bsp-floating-labels) 
@@ -34,10 +37,20 @@
   }
   width: 100%;
   height: 100%;
-  background-color: var(--bsp-bg-body);
+  background: var(--bsp-bg-body);
   background-attachment: fixed;
   label, h1, h2, h3, h4, h5, h6 {
     color: var(--bsp-font-color)
+  }
+  .position-absolute {
+    background: var(--bsp-bg-body);
+  }
+  .back {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: var(--bsp-bg-body)
   }
 } 
 a {
@@ -49,4 +62,17 @@ hr {
   background-color: var(--bsp-bg-navbar-line);
   margin: 0 0.5em;
   border-radius: 200%;
+}
+
+button > span > label {
+  color: unset;
+}
+
+.ppr-1 > span > svg {
+  position: relative;
+  font-size: 1.5em;
+}
+
+.navbar > div {
+  height: 40.4px;
 }

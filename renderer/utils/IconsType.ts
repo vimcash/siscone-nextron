@@ -1,2 +1,2 @@
-export type IconsType = "signup" | "signup" | "play" | "userBlock" | "delay" | "cancel" | "power" 
+export type IconsType = "fileCsv" | "card" | "report"
 
