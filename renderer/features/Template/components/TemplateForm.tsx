@@ -1,4 +1,4 @@
-import { InputLabel } from "../../../components/form/InputLabel";
+import { InputLabel } from "../../../components/form";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectExample1, selectExample2, setExample1, setExample2 } from "../states/templateState";
 const formCss = `position-absolute top-50 start-50 translate-middle responsive-1 trs-1 bg-dark-content p-3 rounded`
