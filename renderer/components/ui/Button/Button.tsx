@@ -2,9 +2,9 @@ import React from 'react'
 import IconByName from '../IconByName'
 
 export const Button = 
-  ({onClick, title, className, icon}:any) => 
+  ({onClick, title, className, icon, primary}:any) => 
     <button 
-      style={{color: "var(--bsp-btn-font-color)"}}
+      style={primary ? {color: "var(--bsp-btn-font-color)", background: "var(--bsp-primary-button)"} : {color: "var(--bsp-btn-font-color)"}}
       type="submit" 
       className={'btn ' + className} 
       onClick={onClick}>
