@@ -14,7 +14,7 @@ const actions = {
     state.dinnerTime = payload
   },
   setCodeSize: (state, {payload}: PayloadAction<number>) => {
-    state.codeSize = payload
+    state.codeSize = payload < 0 ? 0 : payload 
   },
 }
 

@@ -1,9 +1,8 @@
 import type { NextApiHandler } from "next"
 import { nodeFirebird } from "../../lib/nodeFirebird"
 
-const getSlides: NextApiHandler = async (request, response) => {
-  const slides = nodeFirebird("SELECT * FROM SLIDES")
-  response.json({data:slides})
-}
+export const GetSlides: NextApiHandler = 
+  async (request, response) =>
+    response.json({data:nodeFirebird("SELECT * FROM SLIDES")})
 
-export default getSlides
+export default GetSlides

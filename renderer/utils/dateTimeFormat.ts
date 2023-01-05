@@ -1,0 +1,1 @@
+export const dateTimeFormat = (inDateTime: Date):string => inDateTime ? `${inDateTime.getHours()}:${inDateTime.getMinutes()}`: ""
