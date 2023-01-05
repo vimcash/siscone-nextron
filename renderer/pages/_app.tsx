@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps}:AppProps) => {
       </Head>
       <div className='theme-2'>
         <div className='back'/>
-        <ToastContainer />
+        <ToastContainer theme="dark"/>
         <Navbar title="Template"/>
         <hr />
         <div className='container-fluid'>

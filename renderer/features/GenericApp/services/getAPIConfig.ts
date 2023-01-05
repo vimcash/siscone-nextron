@@ -1,5 +1,4 @@
 import axios from "../../../lib/axios"
-import { Request } from "../../../utils/interfaces/Request"
 
 export const getAPIConfig = 
   () => axios({

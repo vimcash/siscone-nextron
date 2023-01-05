@@ -29,7 +29,9 @@ export const Navbar = ({title}) => {
             currPage != 'config' ?
               <Button icon="setting" className="ppr-1" onClick={() => toConfigPage()}/>
             :
-              undefined
+              <Link href="/home">
+                <Button icon="back" className="ppr-1" />
+              </Link>
           }
         </div>
       </div>

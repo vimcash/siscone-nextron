@@ -1,7 +1,7 @@
 import { Button } from "../../../../components/ui/Button";
 
 export const MenuContainer = () => (
-  <div className='row position-absolute w-100 pps-2'>
+  <div className='row position-absolute w-100 pps-2 pe-1 ps-1'>
     <div className=" col-md-6 p-1">
       <Button 
         title="Usuario" 

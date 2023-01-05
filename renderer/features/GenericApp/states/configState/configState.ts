@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { AppState } from "../../../../data/store/types";
-import { useGetConfig } from "../../hooks/useGetConfig";
+import { dateTimeFormat } from "../../../../utils";
+import { Config } from "../../data/interfaces";
+import { useGetConfig, usePostConfig } from "../../hooks";
 import actions from "./actions";
 
-const initialState:any = {
-  status: "idle",
+const initialState:Config = {
   companyName: "",
   breakfastTime: "",
   lunchTime: "",
   dinnerTime: "",
-  codeSize: "",
+  codeSize: 0,
+  status: "idle",
 }
 
 export const configState = createSlice({
@@ -30,12 +32,35 @@ export const configState = createSlice({
         state.status = 'idle'
         if(!action.payload){
           toast.error('Ups! Algo salio mal')
+          return
         }
-        state.companyName = action.payload.companyName
+        state.companyName = action.payload.COMPANY_NAME
         state.breakfastTime = action.payload.breakfastTime
         state.lunchTime = action.payload.lunchTime
         state.dinnerTime = action.payload.dinnerTime
-        state.codeSize = action.payload.codeSize
+        state.codeSize = action.payload.CODE_SIZE
+      })
+      .addCase(usePostConfig.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(usePostConfig.rejected, (state) => {
+        state.status = 'failed'
+        toast.error('Ups! Algo salio mal guardando la configuracion')
+      })
+      .addCase(usePostConfig.fulfilled, (state, action) => {
+        state.status = 'idle'
+        if(!action.payload) {
+          toast.error('Ups! Algo salio mal')
+          return 
+        }
+        console.log(action.payload)
+        state.companyName = action.payload.COMPANY_NAME
+        state.breakfastTime = action.payload.breakfastTime
+        state.lunchTime = action.payload.lunchTime
+        state.dinnerTime = action.payload.dinnerTime
+        state.codeSize = action.payload.CODE_SIZE
+        toast.success('Configuracion guardada exitosamente!')
+        return
       })
   }
 })

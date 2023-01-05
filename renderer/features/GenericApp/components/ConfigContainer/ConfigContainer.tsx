@@ -1,6 +1,7 @@
 import { InputLabel } from "../../../../components/form";
 import { Button } from "../../../../components/ui/Button";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { usePostConfig } from "../../hooks";
 import { useGetConfig } from "../../hooks/useGetConfig";
 import { 
   selectBreakfastTime, 
@@ -51,7 +52,10 @@ export const ConfigContainer = () => {
           onChangeValue={e => dispatch(setCodeSize(e.target.value))} />
       </div>
       <div className="position-absolute pps-rb">
-        <Button icon="save" className="ppr-1 me-1" primary/>
+        <Button icon="save" className="ppr-1 me-1" primary onClick={() => {
+          dispatch(usePostConfig({companyName, breakfastTime, lunchTime, dinnerTime, codeSize}))
+          dispatch(useGetConfig())
+        }}/>
         <Button icon="cancel" className="ppr-1" onClick={() => dispatch(useGetConfig())}/>
       </div>
     </div>

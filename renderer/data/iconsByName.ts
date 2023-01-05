@@ -3,6 +3,7 @@ import { BsFillCreditCard2BackFill } from 'react-icons/bs'
 import { RiFileChartFill } from 'react-icons/ri'
 import { MdSettings, MdCancel } from 'react-icons/md'
 import { IoIosSave } from 'react-icons/io'
+import { TiArrowBack } from 'react-icons/ti'
 
 export const iconsByName = {
   fileCsv: FaFileCsv,
@@ -10,5 +11,6 @@ export const iconsByName = {
   report: RiFileChartFill,
   setting: MdSettings,
   save: IoIosSave,
-  cancel: MdCancel
+  cancel: MdCancel,
+  back: TiArrowBack
 }

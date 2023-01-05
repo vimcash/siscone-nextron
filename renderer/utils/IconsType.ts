@@ -1,2 +1,2 @@
-export type IconsType = "fileCsv" | "card" | "report" | "save" | "cancel"
+export type IconsType = "fileCsv" | "card" | "report" | "save" | "cancel" | "back"
 
