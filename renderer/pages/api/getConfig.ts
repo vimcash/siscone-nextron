@@ -18,7 +18,7 @@ export const getConfig: NextApiHandler =
           dinnerTime: dateTimeFormat(e[0].DINNER_TIME),
           codeSize: e[0].CODE_SIZE
         }
-        res.json({data:data})
+        res.json(data)
       }
     })
   }

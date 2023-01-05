@@ -1,6 +1,7 @@
 import { InputLabel } from "../../../../components/form";
 import { Button } from "../../../../components/ui/Button";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { useGetConfig } from "../../hooks/useGetConfig";
 import { 
   selectBreakfastTime, 
   selectCodeSize, 
@@ -51,7 +52,7 @@ export const ConfigContainer = () => {
       </div>
       <div className="position-absolute pps-rb">
         <Button icon="save" className="ppr-1 me-1" primary/>
-        <Button icon="cancel" className="ppr-1"/>
+        <Button icon="cancel" className="ppr-1" onClick={() => dispatch(useGetConfig())}/>
       </div>
     </div>
   )

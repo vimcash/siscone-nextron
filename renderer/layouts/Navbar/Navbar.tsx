@@ -1,10 +1,18 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { Button } from "../../components/ui/Button"
-import { useAppSelector } from "../../hooks"
+import { useGetConfig } from "../../features/GenericApp/hooks/useGetConfig"
+import { useAppDispatch, useAppSelector } from "../../hooks"
 import { selectCurrPage } from "../../states/globalState"
 
 export const Navbar = ({title}) => {
   const currPage = useAppSelector(selectCurrPage)
+  const dispatch = useAppDispatch()
+  const router = useRouter();
+  const toConfigPage = () => {
+    dispatch(useGetConfig())
+    router.push('/config')
+  }
   return (
     <nav className="navbar">
       <div className="container-fluid">
@@ -19,9 +27,7 @@ export const Navbar = ({title}) => {
         <div className="d-flex">
           {
             currPage != 'config' ?
-              <Link href="/config">
-                <Button icon="setting" className="ppr-1"/>
-              </Link>
+              <Button icon="setting" className="ppr-1" onClick={() => toConfigPage()}/>
             :
               undefined
           }
