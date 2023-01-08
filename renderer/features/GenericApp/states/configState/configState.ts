@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { AppState } from "../../../../data/store/types";
-import { dateTimeFormat } from "../../../../utils";
 import { Config } from "../../data/interfaces";
 import { useGetConfig, usePostConfig } from "../../hooks";
 import actions from "./actions";
@@ -53,7 +52,6 @@ export const configState = createSlice({
           toast.error('Ups! Algo salio mal')
           return 
         }
-        console.log(action.payload)
         state.companyName = action.payload.COMPANY_NAME
         state.breakfastTime = action.payload.breakfastTime
         state.lunchTime = action.payload.lunchTime

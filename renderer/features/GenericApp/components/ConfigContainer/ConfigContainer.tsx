@@ -51,7 +51,7 @@ export const ConfigContainer = () => {
           value={codeSize} 
           onChangeValue={e => dispatch(setCodeSize(e.target.value))} />
       </div>
-      <div className="position-absolute pps-rb">
+      <div className="position-fixed pps-rb">
         <Button icon="save" className="ppr-1 me-1" primary onClick={() => {
           dispatch(usePostConfig({companyName, breakfastTime, lunchTime, dinnerTime, codeSize}))
           dispatch(useGetConfig())

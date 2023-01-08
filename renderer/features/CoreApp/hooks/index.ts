@@ -1,0 +1,1 @@
+export { usePostSlide } from './usePostSlide'

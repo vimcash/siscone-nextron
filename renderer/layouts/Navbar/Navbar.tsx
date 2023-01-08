@@ -26,7 +26,7 @@ export const Navbar = ({title}) => {
         }
         <div className="d-flex">
           {
-            currPage != 'config' ?
+            currPage != 'config' && currPage != 'user' ?
               <Button icon="setting" className="ppr-1" onClick={() => toConfigPage()}/>
             :
               <Link href="/home">

@@ -1,9 +1,9 @@
 import React from 'react'
 import { MenuContainer } from '../features/GenericApp/components'
-import { useAppDispatch } from '../hooks'
 import { setCurrPage } from '../states/globalState'
+import { getDispatch } from '../utils/returnDistpatch'
 const Home = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = getDispatch()
   dispatch(setCurrPage('home'))
   return <MenuContainer />
 }
