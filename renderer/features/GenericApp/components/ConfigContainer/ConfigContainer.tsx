@@ -1,5 +1,5 @@
 import { InputLabel } from "../../../../components/form";
-import { Button } from "../../../../components/ui/Button";
+import { Button } from "../../../../components/ui";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { usePostConfig } from "../../hooks";
 import { useGetConfig } from "../../hooks/useGetConfig";

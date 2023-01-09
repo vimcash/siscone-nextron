@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { useGetConfig } from "../../../features/GenericApp/hooks"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { selectCurrPage } from "../../../states/globalState"
-import { Button } from "../Button"
+import { Button } from "../"
 
 export const NavbarButton = () => {
   const currPage = useAppSelector(selectCurrPage)

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Button } from "../../components/ui/Button"
+import { Button } from "../../components/ui"
 import { useGetConfig } from "../../features/GenericApp/hooks/useGetConfig"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { selectCurrPage } from "../../states/globalState"
