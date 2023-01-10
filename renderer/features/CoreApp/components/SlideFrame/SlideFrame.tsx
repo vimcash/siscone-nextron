@@ -18,6 +18,7 @@ export const SlideFrame = () => {
           onPressEnter={() => {
             distpatch(usePostSlide(currentCode))
           }}
+          icon="card"
           onChangeValue={e => distpatch(setCurrentCode(e.target.value))} />
       </div>
       <div className="w-100">
