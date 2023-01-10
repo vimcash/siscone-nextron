@@ -7,5 +7,8 @@ export {
   selectMonths,
   selectTemporality,
   selectFindByMonth,
-  selectFindByYear
+  selectFindByYear,
+  setByMonth,
+  setByYear,
+  setTemporality
 } from './adminState'

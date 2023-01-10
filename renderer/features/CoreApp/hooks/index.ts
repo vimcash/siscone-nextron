@@ -1,3 +1,3 @@
 export { usePostSlide } from './usePostSlide'
-export { useGetSlide } from './useGetSlide'
+export { usePutSlide } from './usePutSlide'
 export { useGetYears } from './useGetYears'

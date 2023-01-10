@@ -2,13 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Button } from "../../../../components/ui";
 import { useAppDispatch } from "../../../../hooks";
-import { useGetSlide, useGetYears } from "../../../CoreApp/hooks";
+import { usePutSlide, useGetYears } from "../../../CoreApp/hooks";
 
 export const MenuContainer = () => {
   const dispatch = useAppDispatch()
   const router = useRouter();
   const toAdminPage = () => {
-    dispatch(useGetSlide(''))
+    dispatch(usePutSlide(''))
     dispatch(useGetYears())
     router.push('/admin')
   }

@@ -1,10 +1,10 @@
 import axios from "../../../lib/axios";
 
-export const getAPISlide = 
+export const putAPISlide = 
   ({queryWhere}:{queryWhere:string}) => axios({
-    type: 'GET',
-    url: '/api/getSlide',
+    type: 'PUT',
+    url: '/api/putSlide',
     data: {queryWhere}
   })
 
-export default getAPISlide
+export default putAPISlide

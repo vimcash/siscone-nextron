@@ -107,6 +107,7 @@
       color: var(--bsp-btn-font-color);
       border: 1px solid var(--bsp-btn-1);
     }
+    
   }
   select {
     background: var(--bsp-btn-1);
@@ -116,6 +117,10 @@
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 16px 16px;
+  }
+  .table {
+    --bs-table-color: var(--bsp-btn-font-color);
+    --bs-table-border-color: var(--bsp-bg-navbar-line);
   }
 } 
 
@@ -128,6 +133,7 @@ hr {
   background-color: var(--bsp-bg-navbar-line);
   margin: 0 0.5em;
   border-radius: 200%;
+  opacity: 1;
 }
 
 button > span > label {
@@ -152,4 +158,17 @@ button > span > label {
 
 .tx-center {
   text-align: -webkit-center;
+}
+
+.p-table {
+  overflow-y: auto;
+  margin-bottom: 1em;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  margin-bottom: 7.5em;;
+}
+
+.stats {
+  bottom: 0;
+  padding-bottom: 1.5em;
 }

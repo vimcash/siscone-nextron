@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 import { AppState } from "../../../../data/store/types"
-import { useGetSlide, useGetYears } from "../../hooks"
+import { usePutSlide, useGetYears } from "../../hooks"
 import actions from "./actions"
 
 const initialState = {
@@ -39,16 +39,16 @@ export const adminState = createSlice({
   reducers: actions,
   extraReducers(builder) {
     builder
-      .addCase(useGetSlide.pending, (state) => {
+      .addCase(usePutSlide.pending, (state) => {
         state.status = 'loading'
       })
-      .addCase(useGetSlide.rejected, (state) => {
+      .addCase(usePutSlide.rejected, (state) => {
         state.status = 'failed'
         toast.error('Ups! Algo salio mal')
       })
-      .addCase(useGetSlide.fulfilled, (state, actions) =>{
+      .addCase(usePutSlide.fulfilled, (state, actions) =>{
         state.status = 'idle'
-        if(!actions.payload){
+        if(!actions.payload || actions.payload.gdscode){
           toast.error('Ups! Algo salio mal')
           return
         }
@@ -81,5 +81,7 @@ export const selectMonths = (state:AppState) => state.admin.months
 export const selectTemporality = (state:AppState) => state.admin.temporality
 export const selectFindByMonth = (state:AppState) => state.admin.findByMonth
 export const selectFindByYear = (state:AppState) => state.admin.findByYear
+
+export const { setByYear, setByMonth, setTemporality } = adminState.actions
 
 export default adminState.reducer

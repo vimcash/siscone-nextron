@@ -1,7 +1,7 @@
 import type { NextApiHandler } from "next"
 import { nodeFirebird } from "../../lib/nodeFirebird"
 
-const requestType = 'GET'
+const requestType = 'PUT'
 export const getSlide: NextApiHandler = 
   (req, res) => {
     if(req.method !== requestType)

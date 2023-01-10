@@ -2,13 +2,16 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 const actions = {
   setTemporality: (state, {payload}: PayloadAction<string>) => {
-    state.temporality = payload
+    state.findByYear = `${(new Date()).getFullYear()}`
+    state.findByMonth = payload == "Month" ? `${(new Date()).getMonth() + 1}` : ""
   },
-  setFindByYear: (state, {payload}: PayloadAction<string>) => {
+  setByYear: (state, {payload}: PayloadAction<string>) => {
     state.findByYear = payload
+    state.findByMonth = ""
   },
-  setFindByMonth: (state, {payload}: PayloadAction<string>) => {
+  setByMonth: (state, {payload}: PayloadAction<string>) => {
     state.findByMonth = payload
+    state.findByYear = `${(new Date()).getFullYear()}`
   }
 }
 
