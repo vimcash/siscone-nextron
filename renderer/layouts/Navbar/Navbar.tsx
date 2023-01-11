@@ -1,23 +1,15 @@
 import Link from "next/link"
-import { useRouter } from "next/router"
 import { Button } from "../../components/ui"
-import { useGetConfig } from "../../features/GenericApp/hooks/useGetConfig"
-import { useAppDispatch, useAppSelector } from "../../hooks"
-import { selectCurrPage } from "../../states/globalState"
 
-export const Navbar = ({title}) => {
-  const currPage = useAppSelector(selectCurrPage)
-  const dispatch = useAppDispatch()
-  const router = useRouter();
-  const toConfigPage = () => {
-    dispatch(useGetConfig())
-    router.push('/config')
-  }
-  return (
+export const Navbar = 
+  ( 
+    {title, home, onClickRightButton}:
+    {title:string, home?:boolean, onClickRightButton:any}
+  ) => (
     <nav className="navbar">
       <div className="container-fluid">
         {
-          currPage != 'home' ?
+          !home ?
             <Link href="/home">
               <span className="navbar-brand mb-0 h1">{title}</span>
             </Link>
@@ -25,16 +17,8 @@ export const Navbar = ({title}) => {
             <span className="navbar-brand mb-0 h1">{title}</span>
         }
         <div className="d-flex">
-          {
-            currPage != 'config' && currPage != 'user' ?
-              <Button icon="setting" className="ppr-1" onClick={() => toConfigPage()}/>
-            :
-              <Link href="/home">
-                <Button icon="back" className="ppr-1" />
-              </Link>
-          }
+          <Button icon={home ? "setting":"back"} className="ppr-1" onClick={() => onClickRightButton()}/>
         </div>
       </div>
     </nav>
   )
-}

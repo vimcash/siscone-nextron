@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import '../assets/global.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import store from '../data/store'
-import { Navbar } from '../layouts/Navbar'
 import Footer from '../layouts/Footer/Footer'
 
 const MyApp = ({ Component, pageProps}:AppProps) => {
@@ -19,11 +18,7 @@ const MyApp = ({ Component, pageProps}:AppProps) => {
       <div className='theme-2'>
         <div className='back'/>
         <ToastContainer theme="dark"/>
-        <Navbar title="Template"/>
-        <hr />
-        <div className='container-fluid'>
-          <Component {...pageProps} />
-        </div>
+        <Component {...pageProps} />
         <Footer />
       </div>
     </Provider>

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { AppState } from "../../data/store/types"
+import { getLocalStorage } from "../../utils";
 import actions from "./actions"
 
 const pjson = require('../../../package.json');
-
+const currPage = getLocalStorage('currPage')
 const initialState = {
-  currPage: 'home',
+  currPage: currPage,
   version: pjson.version
 }
 

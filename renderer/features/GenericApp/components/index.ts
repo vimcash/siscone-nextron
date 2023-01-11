@@ -1,2 +1,2 @@
-export { MenuContainer } from "./MenuContainer/MenuContainer"
-export { ConfigContainer } from "./ConfigContainer/ConfigContainer"
+export { MenuFrame } from "./MenuFrame/MenuFrame"
+export { ConfigFrame } from "./ConfigFrame/ConfigFrame"

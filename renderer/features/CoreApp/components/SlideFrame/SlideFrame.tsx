@@ -1,14 +1,13 @@
 import { InputIcon } from "../../../../components/form"
-import { useAppDispatch, useAppSelector } from "../../../../hooks"
-import { getDispatch } from "../../../../utils/returnDistpatch"
+import { useAppDispatch } from "../../../../hooks"
 import { usePostSlide } from "../../hooks"
-import { selectCurrentCode, selectLastCode, setCurrentCode } from "../../states/slideState"
+import { setCurrentCode } from "../../states/slideState"
 
-export const SlideFrame = () => {
-  const distpatch = getDispatch()
-  const lastCode = useAppSelector(selectLastCode)
-  const currentCode = useAppSelector(selectCurrentCode)
-
+export const SlideFrame = ({
+  currentCode,
+  lastCode
+}) => {
+  const distpatch = useAppDispatch()
   return (
     <div className="position-absolute top-50 start-50 translate-middle responsive-3 p-3">
       <div className="tx-center w-100">

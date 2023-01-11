@@ -1,11 +1,5 @@
-import { SlideFrame } from "../features/CoreApp/components"
-import { useAppDispatch } from "../hooks"
-import { setCurrPage } from "../states/globalState"
+import SlideContainer from "../features/CoreApp/containers/SlideContainer"
 
-export const User = () => {
-  const dispatch = useAppDispatch()
-  dispatch(setCurrPage('user'))
-  return <SlideFrame />
-}
+export const User = () => <SlideContainer />
 
 export default User

@@ -1,12 +1,5 @@
-import { ConfigContainer } from "../features/GenericApp/components"
-import { useAppDispatch } from "../hooks"
-import { setCurrPage } from "../states/globalState"
+import ConfigContainer from "../features/GenericApp/containers/ConfigContainer"
 
-export const Config = () => {
-  const dispatch = useAppDispatch()
-  dispatch(setCurrPage('config'))
-  return <ConfigContainer />
-}
-
+export const Config = () => <ConfigContainer />
 
 export default Config
