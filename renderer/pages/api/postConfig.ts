@@ -4,7 +4,7 @@ import { dateTimeFormat, setDelay } from "../../utils"
 
 const requestType = 'POST'
 export const postConfig: NextApiHandler = 
-  (req, res) => {
+  async (req, res) => {
     if(req.method !== requestType)
     {
       res.status(405).send({ message: `Only ${requestType} requests allowed` })
@@ -17,7 +17,7 @@ export const postConfig: NextApiHandler =
       dinnerTime,
       codeSize
     } = req.body
-    nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`, async e => {
+    const ret = nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`, async e => {
       if(!e)
         return res.json(undefined)
       
