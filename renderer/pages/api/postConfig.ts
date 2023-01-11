@@ -17,19 +17,12 @@ export const postConfig: NextApiHandler =
       dinnerTime,
       codeSize
     } = req.body
-    const ret = nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`, async e => {
-      if(!e)
-        return res.json(undefined)
-      
-      await setDelay(.02)
-      nodeFirebird("SELECT FIRST(1) * FROM CONFIG", e => {
-        if(!e)
-          return res.json(undefined)
-        e[0].breakfastTime = dateTimeFormat(e[0].BREAKFAST_TIME)
-        e[0].lunchTime = dateTimeFormat(e[0].LUNCH_TIME)
-        e[0].dinnerTime = dateTimeFormat(e[0].DINNER_TIME)
-        res.json(e[0])
-      })
-    })
+    const run = await nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`)
+    console.log(run)
+    await setDelay(.02)
+    const configs = await nodeFirebird("SELECT FIRST(1) * FROM VW_CONFIG")
+    if(!configs)
+        return undefined
+    return configs[0]
   }
 export default postConfig
