@@ -1,11 +1,12 @@
 import { useAppSelector } from "../../hooks"
+import { nodeFirebird } from "../../lib/nodeFirebird"
 import { selectVersion } from "../../states/globalState"
 
 export const Footer = () =>{ 
   const version = useAppSelector(selectVersion)
   return <div className="footer text-center">
     <label style={{color: "var(--bsp-font-color-footer)"}}>
-      {version} <a href="/api/getSlides" target="_blank">GitHub/RaianGil</a>
+      {version} <a href="/api/putSlide" target="_blank">GitHub/RaianGil</a>
     </label>
   </div>
 }

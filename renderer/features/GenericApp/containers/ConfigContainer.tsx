@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import { useAppSelector } from "../../../hooks"
 import { Navbar } from "../../../layouts/Navbar"
 import { goBack, setLocalStorage } from "../../../utils"
@@ -11,6 +12,7 @@ import {
 } from "../states/configState"
 
 const ConfigContainer = () => {
+  const router = useRouter()
   const companyName = useAppSelector(selectCompanyName)
   const breakfastTime = useAppSelector(selectBreakfastTime)
   const lunchTime = useAppSelector(selectLunchTime)
@@ -20,7 +22,7 @@ const ConfigContainer = () => {
     <>
       <Navbar 
         title="Configuracion"
-        onClickRightButton={() => goBack()}/>
+        onClickRightButton={() => goBack(router)}/>
       <hr />
       <div 
         className="container-fluid">

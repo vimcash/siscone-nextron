@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import getAPIConfig from "../services/getAPIConfig";
+import getConfig from "../services/getConfig";
 
 export const useGetConfig = createAsyncThunk(
-  'service/getAPIConfig',
-  async () =>{
-    const res = await getAPIConfig()
-    return res.data
+  'service/getConfig',
+  async () => {
+    const config:any = await getConfig()
+    return config
   }
 )

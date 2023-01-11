@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import { setDelay } from "./setDelay";
-import { setLocalStorage } from "./setLocalStorage"
+import { useAppDispatch } from "../hooks";
+import { setCurrPage } from "../states/globalState";
 
 export const goBack = async (router) => {
-  setLocalStorage( "")
+  const dispatch = useAppDispatch()
+  dispatch(setCurrPage(""))
   router.push('/home')
 }

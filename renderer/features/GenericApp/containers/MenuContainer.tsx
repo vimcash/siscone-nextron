@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { Navbar } from "../../../layouts/Navbar";
 import { selectCurrPage, setCurrPage } from "../../../states/globalState";
-import { getLocalStorage, setLocalStorage } from "../../../utils";
+import { delayPage } from "../../../utils";
 import { useGetYears, usePutSlide } from "../../CoreApp/hooks";
 import { MenuFrame } from "../components";
 import { useGetConfig } from "../hooks";
@@ -11,6 +11,7 @@ const MenuContainer = () => {
   const dispatch = useAppDispatch()
   const currPage = useAppSelector(selectCurrPage)
   const router = useRouter()
+  delayPage()
 
   const toMenuPage = (route:string) => {
     if(route == "admin"){
@@ -35,7 +36,7 @@ const MenuContainer = () => {
         onClickRightButton={() => toConfigPage()}
         home/>
       <hr />
-      <div id="home" className="container-fluid d-none">
+      <div id="home" className={`container-fluid d-none`}>
         <MenuFrame 
           onClickAdmin={() => toMenuPage('admin')}
           onClickUser={() => toMenuPage('user')}/> 

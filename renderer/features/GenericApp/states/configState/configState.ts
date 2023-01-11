@@ -34,9 +34,9 @@ export const configState = createSlice({
           return
         }
         state.companyName = action.payload.COMPANY_NAME
-        state.breakfastTime = action.payload.breakfastTime
-        state.lunchTime = action.payload.lunchTime
-        state.dinnerTime = action.payload.dinnerTime
+        state.breakfastTime = action.payload.BREAKFAST_TIME
+        state.lunchTime = action.payload.LUNCH_TIME
+        state.dinnerTime = action.payload.DINNER_TIME
         state.codeSize = action.payload.CODE_SIZE
       })
       .addCase(usePostConfig.pending, (state) => {
@@ -52,10 +52,11 @@ export const configState = createSlice({
           toast.error('Ups! Algo salio mal')
           return 
         }
+        console.log(action.payload)
         state.companyName = action.payload.COMPANY_NAME
-        state.breakfastTime = action.payload.breakfastTime
-        state.lunchTime = action.payload.lunchTime
-        state.dinnerTime = action.payload.dinnerTime
+        state.breakfastTime = action.payload.BREAKFAST_TIME
+        state.lunchTime = action.payload.LUNCH_TIME
+        state.dinnerTime = action.payload.DINNER_TIME
         state.codeSize = action.payload.CODE_SIZE
         toast.success('Configuracion guardada exitosamente!')
         return

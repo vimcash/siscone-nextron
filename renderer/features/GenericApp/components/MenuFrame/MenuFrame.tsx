@@ -8,7 +8,8 @@ export const MenuFrame =
         <Button 
           title="Usuario" 
           icon="card" 
-          className="w-100 h-100 fs-1"/>
+          className="w-100 h-100 fs-1"
+          onClick={() => onClickUser()} />
       </div>
       <div className=" col-md-6 p-1">
         <Button 

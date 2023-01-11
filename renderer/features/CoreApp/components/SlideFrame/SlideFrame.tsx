@@ -7,7 +7,7 @@ export const SlideFrame = ({
   currentCode,
   lastCode
 }) => {
-  const distpatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   return (
     <div className="position-absolute top-50 start-50 translate-middle responsive-3 p-3">
       <div className="tx-center w-100">
@@ -15,10 +15,10 @@ export const SlideFrame = ({
         <InputIcon 
           value={currentCode}
           onPressEnter={() => {
-            distpatch(usePostSlide(currentCode))
+            dispatch(usePostSlide(currentCode))
           }}
           icon="card"
-          onChangeValue={e => distpatch(setCurrentCode(e.target.value))} />
+          onChangeValue={e => dispatch(setCurrentCode(e.target.value))} />
       </div>
       <div className="w-100">
         <label 

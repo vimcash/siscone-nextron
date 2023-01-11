@@ -15,7 +15,7 @@ const actions = {
   },
   setCodeSize: (state, {payload}: PayloadAction<number>) => {
     state.codeSize = payload < 0 ? 0 : payload 
-  },
+  }
 }
 
 export default actions

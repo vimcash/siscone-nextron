@@ -6,6 +6,7 @@ import actions from "./actions"
 const pjson = require('../../../package.json');
 const currPage = getLocalStorage('currPage')
 const initialState = {
+  firstRun: true,
   currPage: currPage,
   version: pjson.version
 }
@@ -18,7 +19,8 @@ export const globalSlice = createSlice({
 
 export const selectCurrPage = (state: AppState) => state.global.currPage
 export const selectVersion = (state: AppState) => state.global.version
+export const selectFirstRun = (state: AppState) => state.global.firstRun
 
-export const { setCurrPage } = globalSlice.actions
+export const { setCurrPage, setFirstTime } = globalSlice.actions
 
 export default globalSlice.reducer
