@@ -13,6 +13,7 @@ export const InputIcon = ({title, onPressEnter, onChangeValue, value, icon}:any,
       className="form-control" 
       placeholder={title} 
       onKeyUp={e => onEnterDo(e, onPressEnter)}
-      onChange={e => onChangeValue(e)}/>
+      onChange={e => onChangeValue(e)}
+      value={value}/>
   </div>
 )
