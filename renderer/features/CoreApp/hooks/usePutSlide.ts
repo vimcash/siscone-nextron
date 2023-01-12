@@ -3,7 +3,7 @@ import putSlide from "../services/putSlide";
 
 export const usePutSlide = createAsyncThunk(
   'service/putSlide',
-  async (queryWhere:string) => {
+  async (queryWhere:any) => {
     const res:any = await putSlide(queryWhere)
     return res
   }

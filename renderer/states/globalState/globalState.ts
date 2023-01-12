@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { AppState } from "../../data/store/types"
 import { useReadConfig } from "../../hooks";
-import { getLocalStorage, readConfig } from "../../utils";
+import { getLocalStorage, readConfig, setLocalStorage } from "../../utils";
 import actions from "./actions"
 
 const pjson = require('../../../package.json');
@@ -20,8 +20,9 @@ export const globalSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(useReadConfig.fulfilled, (state, action)=>{
-        if(action.payload && state.dbHost != action.payload.dbHost)
+        if(action.payload && state.dbHost != action.payload.dbHost){
           state.dbHost = action.payload.dbHost
+        }
       })
   },
 })

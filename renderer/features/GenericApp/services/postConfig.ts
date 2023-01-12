@@ -1,14 +1,11 @@
 import { nodeFirebird } from "../../../lib/nodeFirebird"
-import { dateTimeFormat, setDelay } from "../../../utils"
-import { selectDbHost } from "../../../states/globalState/globalState"
-import { useAppSelector } from "../../../hooks"
+import { setDelay } from "../../../utils"
 
 export const postConfig = async ({companyName, breakfastTime, lunchTime, dinnerTime, codeSize}) => {
-  const dbHost = useAppSelector(selectDbHost)
-  const run = await nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`,dbHost)
+  const run = await nodeFirebird(`SELECT * FROM SP_ADD_CONFIG('${companyName}','${breakfastTime}','${lunchTime}','${dinnerTime}',${codeSize})`)
   console.log(run)
   await setDelay(.02)
-  const configs = await nodeFirebird("SELECT FIRST(1) * FROM VW_CONFIG",dbHost)
+  const configs = await nodeFirebird("SELECT FIRST(1) * FROM VW_CONFIG")
   if(!configs)
       return undefined
   return configs[0]
