@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { Navbar } from "../../../layouts/Navbar";
 import { selectCurrPage, setCurrPage } from "../../../states/globalState";
+import { selectDbHost } from "../../../states/globalState/globalState";
 import { delayPage } from "../../../utils";
 import { useGetYears, usePutSlide } from "../../CoreApp/hooks";
 import { MenuFrame } from "../components";
@@ -11,6 +12,8 @@ const MenuContainer = () => {
   const dispatch = useAppDispatch()
   const currPage = useAppSelector(selectCurrPage)
   const router = useRouter()
+  const host = useAppSelector(selectDbHost)
+  console.log(host)
   delayPage()
 
   const toMenuPage = (route:string) => {

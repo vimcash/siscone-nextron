@@ -7,7 +7,6 @@ import '../assets/global.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import store from '../data/store'
 import Footer from '../layouts/Footer/Footer'
-
 const MyApp = ({ Component, pageProps}:AppProps) => {
   return (
   <Provider store={store}>

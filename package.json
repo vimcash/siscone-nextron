@@ -8,12 +8,14 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "build:win32": "nextron build --win --ia32",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
+    "dotenv": "^16.0.3",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "next": "^13.1.1",

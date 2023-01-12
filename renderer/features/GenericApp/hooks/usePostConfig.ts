@@ -5,7 +5,7 @@ import { postConfig } from "../services/postConfig";
 export const usePostConfig = createAsyncThunk(
   'service/postConfig',
   async (inConfig:Config) => {
-    const config = await postConfig(inConfig)
+    const config:any = await postConfig(inConfig)
     return config
   }
 )

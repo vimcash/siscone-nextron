@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import putAPISlide from "../services/putAPISlide";
+import putSlide from "../services/putSlide";
 
 export const usePutSlide = createAsyncThunk(
-  'service/putAPISlide',
+  'service/putSlide',
   async (queryWhere:string) => {
-    const res = await putAPISlide({queryWhere})
-    return res? res.data : undefined
+    const res:any = await putSlide(queryWhere)
+    return res
   }
 )

@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import postAPISlide from "../services/postAPISlide";
+import postSlide from "../services/postSlide";
 
 export const usePostSlide = createAsyncThunk(
-  'service/postAPISlide',
+  'service/postSlide',
   async (inCode:string) => {
-    const res = await postAPISlide({inCode})
-    return res? res.data : undefined
+    const res:any = await postSlide(inCode)
+    return res
   }
 )

@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import getAPIYears from "../services/getAPIYears";
+import getYears from "../services/getYears";
 
 export const useGetYears = createAsyncThunk(
-  'service/getAPIYears',
+  'service/getYears',
   async () => {
-    const res = await getAPIYears()
-    return res? res.data : undefined
+    const res:any = await getYears()
+    return res
   }
 )
