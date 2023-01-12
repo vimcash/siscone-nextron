@@ -1,14 +1,10 @@
 import { InputLabel } from "../../../../components/form";
 import { Button } from "../../../../components/ui";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { selectDbHost } from "../../../../states/globalState/globalState";
 import { usePostConfig } from "../../hooks";
 import { useGetConfig } from "../../hooks/useGetConfig";
 import { 
-  selectBreakfastTime, 
-  selectCodeSize, 
-  selectCompanyName, 
-  selectDinnerTime, 
-  selectLunchTime, 
   setBreakfastTime,
   setCodeSize,
   setCompanyName,
@@ -21,9 +17,10 @@ export const ConfigFrame = ({
     breakfastTime,
     lunchTime,
     dinnerTime,
-    codeSize
+    codeSize,
 }) => {
   const dispatch = useAppDispatch()
+  const config = useAppSelector(selectDbHost)
     return (
       <div className="mt-2">
         <div className="col-md-5">
@@ -51,6 +48,7 @@ export const ConfigFrame = ({
             type="number" 
             value={codeSize} 
             onChangeValue={e => dispatch(setCodeSize(e.target.value))} />
+          <label style={{color: "var(--bsp-bg-body)"}}>{config}</label>
         </div>
         <div className="position-fixed pps-rb">
           <Button icon="save" className="ppr-1 me-1" primary onClick={() => {

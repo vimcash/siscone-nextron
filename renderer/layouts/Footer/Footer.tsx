@@ -1,5 +1,4 @@
 import { useAppSelector } from "../../hooks"
-import { nodeFirebird } from "../../lib/nodeFirebird"
 import { selectVersion } from "../../states/globalState"
 
 export const Footer = () =>{ 

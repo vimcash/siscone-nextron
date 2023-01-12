@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector, useReadConfig } from "../../../hooks";
 import { Navbar } from "../../../layouts/Navbar";
 import { selectCurrPage, setCurrPage } from "../../../states/globalState";
 import { delayPage } from "../../../utils";
@@ -29,6 +29,7 @@ const MenuContainer = () => {
     dispatch(useGetConfig())
     router.push('/config')
   }
+  dispatch(useReadConfig())
   return (
     <>
       <Navbar 
