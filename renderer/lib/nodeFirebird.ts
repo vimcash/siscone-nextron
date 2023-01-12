@@ -1,13 +1,10 @@
 import Firebird from 'node-firebird'
 import { FirebirdConn } from '../utils/interfaces/FirebirdConn'
-import { useAppSelector } from '../hooks'
-import { selectDbHost } from '../states/globalState/globalState'
-
+const config = require("C:\\app\\CardSlide\\config.json")
 export const nodeFirebird = async(query: string) => {
-  const dbHost = useAppSelector(selectDbHost)
  
   const connectionString:FirebirdConn = {
-    host: dbHost,
+    host: config.dbHost,
     port: 3050,
     database: 'C:\\app\\CardSlide\\CARDSLIDE.FDB',
     user: 'SYSDBA',
