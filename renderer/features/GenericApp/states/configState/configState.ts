@@ -52,7 +52,6 @@ export const configState = createSlice({
           toast.error('Ups! Algo salio mal')
           return 
         }
-        console.log(action.payload)
         state.companyName = action.payload.COMPANY_NAME
         state.breakfastTime = action.payload.BREAKFAST_TIME
         state.lunchTime = action.payload.LUNCH_TIME

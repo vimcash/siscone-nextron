@@ -13,6 +13,7 @@ export const SlideFrame = ({
       <div className="tx-center w-100">
         <label className="h3">Escanea el codigo</label>
         <InputIcon 
+          name="iptCard"
           value={currentCode}
           onPressEnter={() => {
             dispatch(usePostSlide(currentCode))

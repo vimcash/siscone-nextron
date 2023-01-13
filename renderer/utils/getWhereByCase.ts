@@ -25,7 +25,6 @@ export const getWhereByCase = (inParam:string) => {
       `'1.${intParam}.${date.getFullYear()}', '1.${intParam+1}.${date.getFullYear()}'`
   //By Year
   if(intParam > 2019) {
-    console.log(`'1.1.${intParam}', '31.12${intParam}'`)
     return `'1.1.${intParam}', '31.12.${intParam}'`
   }
 }
