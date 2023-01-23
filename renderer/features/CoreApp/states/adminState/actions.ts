@@ -12,6 +12,12 @@ const actions = {
   setByMonth: (state, {payload}: PayloadAction<string>) => {
     state.findByMonth = payload
     state.findByYear = `${(new Date()).getFullYear()}`
+  },
+  setCategory: (state, {payload}: PayloadAction<string>) => {
+    state.category = payload
+  },
+  setQueryWhere: (state, {payload}: PayloadAction<string>) => {
+    state.queryWhere = payload
   }
 }
 

@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../../hooks"
 import { Navbar } from "../../../layouts/Navbar"
 import { AdminFrame } from "../components"
-import { selectCurrPage } from "../../../states/globalState"
 import { 
   selectDataSource, 
   selectFindByMonth, 
@@ -9,7 +8,10 @@ import {
   selectListButtons, 
   selectMonths, 
   selectTitles, 
-  selectYears 
+  selectYears,
+  selectCategories, 
+  selectCategory, 
+  selectQueryWhere
 } from "../states/adminState"
 import { goBack } from "../../../utils"
 import { useRouter } from "next/router"
@@ -23,12 +25,13 @@ const AdminContainer = () => {
   const years = useAppSelector(selectYears)
   const findByYear = useAppSelector(selectFindByYear)
   const findByMonth = useAppSelector(selectFindByMonth)
+  const categories = useAppSelector(selectCategories)
+  const category = useAppSelector(selectCategory)
   return (
     <>
       <Navbar 
         title="Administrador" 
         onClickRightButton={() => goBack(router)}/>
-      <hr />
       <div className="container-fluid">
         <AdminFrame 
           titles={titles}
@@ -37,7 +40,9 @@ const AdminContainer = () => {
           dataSource={dataSource}
           years={years}
           findByMonth={findByMonth}
-          findByYear={findByYear}/>
+          findByYear={findByYear}
+          categories={categories}
+          category={category}/>
       </div>
     </>
   )

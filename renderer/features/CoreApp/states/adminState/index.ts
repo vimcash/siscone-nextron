@@ -8,7 +8,11 @@ export {
   selectTemporality,
   selectFindByMonth,
   selectFindByYear,
+  selectQueryWhere,
+  selectCategories, 
+  selectCategory,
   setByMonth,
   setByYear,
-  setTemporality
+  setTemporality,
+  setQueryWhere
 } from './adminState'

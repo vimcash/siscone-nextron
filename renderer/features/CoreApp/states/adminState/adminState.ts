@@ -6,7 +6,8 @@ import actions from "./actions"
 
 const initialState = {
   status: "idle",
-  titles: ["Codigo", "Categoria", "Fecha"],
+  titles: ["Codigo", "Categoria", "Precio", "Subsidio", "Fecha"],
+  categories: ["GENERAL", "DESAYUNO", "ALMUERZO", "CENA"],
   listButtons: [
     {title:"Este año", value:"Year"},
     {title:"Este mes", value:"Month"},
@@ -31,7 +32,9 @@ const initialState = {
   ],
   temporality: "",
   findByYear: "",
-  findByMonth: ""
+  findByMonth: "",
+  category: "GENERAL",
+  queryWhere: ""
 }
 export const adminState = createSlice({
   name: "admin",
@@ -74,6 +77,8 @@ export const adminState = createSlice({
 })
 
 export const selectTitles = (state:AppState) => state.admin.titles
+export const selectCategories = (state:AppState) => state.admin.categories
+export const selectCategory = (state:AppState) => state.admin.category
 export const selectListButtons = (state:AppState) => state.admin.listButtons
 export const selectDataSource = (state:AppState) => state.admin.dataSource
 export const selectYears = (state:AppState) => state.admin.years
@@ -81,7 +86,8 @@ export const selectMonths = (state:AppState) => state.admin.months
 export const selectTemporality = (state:AppState) => state.admin.temporality
 export const selectFindByMonth = (state:AppState) => state.admin.findByMonth
 export const selectFindByYear = (state:AppState) => state.admin.findByYear
+export const selectQueryWhere = (state:AppState) => state.admin.selectQueryWhere
 
-export const { setByYear, setByMonth, setTemporality } = adminState.actions
+export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere } = adminState.actions
 
 export default adminState.reducer

@@ -14,7 +14,6 @@ const SlideContainer = () => {
       <Navbar 
         title="CardSlide"
         onClickRightButton={() => goBack(router)}/>
-      <hr />
       <div className="container-fluid">
         <SlideFrame 
           lastCode={lastCode}

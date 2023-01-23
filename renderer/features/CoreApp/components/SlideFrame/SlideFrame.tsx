@@ -16,10 +16,11 @@ export const SlideFrame = ({
           name="iptCard"
           value={currentCode}
           onPressEnter={() => {
-            dispatch(usePostSlide(currentCode))
+            if(currentCode)
+              dispatch(usePostSlide(currentCode))
           }}
           icon="card"
-          onChangeValue={e => dispatch(setCurrentCode(e.target.value))} />
+          onChangeValue={e => dispatch(setCurrentCode(`${e.target.value}`.trim()))} />
       </div>
       <div className="w-100">
         <label 

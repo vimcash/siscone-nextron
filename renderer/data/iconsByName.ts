@@ -4,6 +4,7 @@ import { RiFileChartFill } from 'react-icons/ri'
 import { MdSettings, MdCancel } from 'react-icons/md'
 import { IoIosSave } from 'react-icons/io'
 import { TiArrowBack } from 'react-icons/ti'
+import { SiMicrosoftexcel } from 'react-icons/si'
 
 export const iconsByName = {
   fileCsv: FaFileCsv,
@@ -12,5 +13,6 @@ export const iconsByName = {
   setting: MdSettings,
   save: IoIosSave,
   cancel: MdCancel,
-  back: TiArrowBack
+  back: TiArrowBack,
+  excel: SiMicrosoftexcel
 }

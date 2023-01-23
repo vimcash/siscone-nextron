@@ -2,7 +2,7 @@ import React from 'react'
 import IconByName from '../IconByName'
 
 export const Button = 
-  ({onClick, title, className, icon, primary}:any) => 
+  ({onClick, title, className, icon, primary, left}:any) => 
     <button 
       style={primary ? {color: "var(--bsp-btn-font-color)", background: "var(--bsp-primary-button)"} : {color: "var(--bsp-btn-font-color)"}}
       type="submit" 
@@ -13,7 +13,7 @@ export const Button =
           { title ?
               <label 
                 style={{color: "var(--bsp-btn-font-color)"}} 
-                className="d-block">
+                className={left? "ms-1": "d-block"}>
                   {title}
               </label>
             :
