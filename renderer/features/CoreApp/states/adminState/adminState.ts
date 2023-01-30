@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 import { AppState } from "../../../../data/store/types"
 import { usePutSlide, useGetYears } from "../../hooks"
+import { usePutTotals } from "../../hooks/usePutTotals"
 import actions from "./actions"
 
 const initialState = {
   status: "idle",
   titles: ["Codigo", "Categoria", "Precio", "Subsidio", "Fecha"],
+  titlesLite: ["Categoria", "Cantidad", "Empleado", "Subsidio", "Total"],
   categories: ["GENERAL", "DESAYUNO", "ALMUERZO", "CENA"],
   listButtons: [
     {title:"Este año", value:"Year"},
@@ -14,6 +16,7 @@ const initialState = {
     {title:"Hoy", value:"Day"},
   ],
   dataSource: [],
+  totals: {},
   years: [],
   months: [
     {title: "", value: "0"},
@@ -34,7 +37,9 @@ const initialState = {
   findByYear: "",
   findByMonth: "",
   category: "GENERAL",
-  queryWhere: ""
+  queryWhere: "",
+  externalLoad: false,
+  adminVersion: "lite"
 }
 export const adminState = createSlice({
   name: "admin",
@@ -56,6 +61,23 @@ export const adminState = createSlice({
           return
         }
         state.dataSource = actions.payload
+        state.externalLoad = false
+      })
+      .addCase(usePutTotals.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(usePutTotals.rejected, (state) => {
+        state.status = 'failed'
+        toast.error('Ups! Algo salio mal')
+      })
+      .addCase(usePutTotals.fulfilled, (state, actions) =>{
+        state.status = 'idle'
+        if(!actions.payload || actions.payload.gdscode){
+          toast.error('Ups! Algo salio mal')
+          return
+        }
+        state.totals = actions.payload
+        state.externalLoad = false
       })
       .addCase(useGetYears.pending, (state) => {
         state.status = 'loading'
@@ -87,7 +109,8 @@ export const selectTemporality = (state:AppState) => state.admin.temporality
 export const selectFindByMonth = (state:AppState) => state.admin.findByMonth
 export const selectFindByYear = (state:AppState) => state.admin.findByYear
 export const selectQueryWhere = (state:AppState) => state.admin.selectQueryWhere
+export const selectAdmin = (state:AppState) => state.admin
 
-export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere } = adminState.actions
+export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere, setExternalLoad } = adminState.actions
 
 export default adminState.reducer

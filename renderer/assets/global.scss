@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~@sweetalert2/theme-dark/dark.scss';
 @import './scss/theme-1.scss';
 @import './scss/theme-2.scss';
 @import './scss/responsiveSizes.scss';
@@ -123,6 +124,7 @@
     --bs-table-color: var(--bsp-btn-font-color);
     --bs-table-border-color: var(--bsp-bg-navbar-line);
   }
+
 } 
 
 a {
@@ -163,10 +165,9 @@ button > span > label {
 
 .p-table {
   overflow-y: auto;
-  margin-bottom: 1em;
   width: -webkit-fill-available;
   height: -webkit-fill-available;
-  margin-bottom: 7.5em;;
+  margin-bottom: 6em;
 }
 
 .stats {

@@ -1,23 +1,32 @@
-import { RadioButton, ComboBox, Table, TitleValueLabel, Button } from "../../../../components/ui"
-import { useAppDispatch, useAppSelector } from "../../../../hooks"
-import { exportCSV, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
+import { RadioButton, ComboBox, Table, TitleValueLabel, Button, Spinner, AdminFilterPad } from "../../../../components/ui"
+import { useAppDispatch} from "../../../../hooks"
+import { exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
 import { cleanRadioButton } from "../../../../utils/cleanRadioButton"
-import { usePutSlide } from "../../hooks"
+import { useGetYears, usePutSlide } from "../../hooks"
 import { setByMonth, setByYear, setTemporality } from "../../states/adminState"
 import { setCategory } from "../../states/adminState/adminState"
 
-export const AdminFrame = ({
-  buttons,
-  months,
-  findByMonth,
-  years,
-  findByYear,
-  titles,
-  dataSource,
-  categories,
-  category
-}) => {
+export const AdminFrame = ({ admin }) => {
+  const {
+    listButtons,
+    months,
+    findByMonth,
+    years,
+    findByYear,
+    titles,
+    dataSource,
+    categories,
+    category,
+    externalLoad,
+  } = admin
   const dispatch = useAppDispatch()
+  if (externalLoad){
+    dispatch(usePutSlide({queryWhere:'', category: 'GENERAL'}))
+    dispatch(useGetYears())
+    return (
+      <Spinner />
+    )
+  }
   const initialValue = 0;
   const totalPrice = dataSource.reduce((acumulator, currentVal) => acumulator + Number(currentVal.PRICE),initialValue)
   const totalSubsidy = dataSource.reduce((acumulator, currentVal) => acumulator + Number(currentVal.SUBSIDY),initialValue)
@@ -35,52 +44,32 @@ export const AdminFrame = ({
   }
   return (
     <div className="mt-2">
-      <div className="row pe-2 ps-2">
-        <RadioButton 
-          className="mb-1 me-1 col-sm-auto checkbox"
-          onClick={e => {
-            dispatch(setTemporality(e))
-            dispatch(usePutSlide({queryWhere: getWhereByCase(e), category}))
-          }}
-          options={buttons} 
-          name="temp"/>
-        <ComboBox 
-          className="col-sm-auto mb-1 me-1" 
-          inOptions={months}
-          onChange={e => onChangeComboBox(e.target.value)}
-          value={findByMonth}/>
-        <ComboBox 
-          className="col-sm-auto mb-1 me-1" 
-          inOptions={years}
-          onChange={e => onChangeComboBox(e.target.value)}
-          value={findByYear}/>
-        <ComboBox 
-          className="col-sm-auto mb-1 me-1" 
-          inOptions={categories}
-          onChange={e => onChangeComboBox(e.target.value)}
-          value={category}/>
-        <Button
-          className="col-sm-auto mb-1 me-1"
-          icon="report"
-          title="Imprimir"
-          left primary
-          onClick={() => reportGenerator(titles, dataSource, ['Total', `${dataSource.length}`, `${totalPrice}`, `${totalSubsidy}`, `${(totalPrice + totalSubsidy).toFixed(2)}`])}/>
-          <Button
-            className="col-sm-auto mb-1 me-1"
-            icon="excel"
-            title="Exportar"
-            left primary
-            onClick={() => exportCSV(titles, dataSource, `Total:,${dataSource.length},${totalPrice},${totalSubsidy},${(totalPrice + totalSubsidy).toFixed(2)}`)}/>
-      </div>
+      <AdminFilterPad 
+        radioOptions={listButtons}
+        onClickRadio={e => {
+          dispatch(setTemporality(e))
+          dispatch(usePutSlide({queryWhere: getWhereByCase(e), category}))}}
+        onChangeComboBox={e => onChangeComboBox(e)}
+        months={months}
+        years={years}
+        categories={categories}
+        selectedMonth={findByMonth}
+        selectedYear={findByYear}
+        selectedCategory={category}
+        onClickPrint={() => reportGenerator(titles, dataSource, ['Total', `${dataSource.length}`, `${formatMoney(totalPrice)}`, `${formatMoney(totalSubsidy)}`, `${formatMoney(totalPrice + totalSubsidy)}`])}
+        onClickReport={() => () => exportCSV(titles, dataSource, `Total:,${dataSource.length},${formatMoney(totalPrice)},${formatMoney(totalSubsidy)},${formatMoney(totalPrice + totalSubsidy)}`)}/>
       <div className="p-table position-absolute pe-3">
         <Table 
           titles={titles}
           dataSource={dataSource}/>
       </div>
       <div className="stats row w-100 position-absolute">
-        <TitleValueLabel className="col-4" title="Desayunos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "DESAYUNO").length}`} />
-        <TitleValueLabel className="col-4" title="Almuerzos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "ALMUERZO").length}`} />
-        <TitleValueLabel className="col-4" title="Cenas" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "CENA").length}`} />
+        <TitleValueLabel className="col-auto" title="Desayunos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "DESAYUNO").length}`} />
+        <TitleValueLabel className="col-auto" title="Almuerzos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "ALMUERZO").length}`} />
+        <TitleValueLabel className="col-auto" title="Cenas" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "CENA").length}`} />
+        <TitleValueLabel className="col-auto" title="Pagos" value={`${formatMoney(totalPrice)}`} />
+        <TitleValueLabel className="col-auto" title="Subsidios" value={`${formatMoney(totalSubsidy)}`} />
+        <TitleValueLabel className="col-auto" title="Total" value={`${formatMoney(totalPrice + totalSubsidy)}`} />
       </div>
 
 

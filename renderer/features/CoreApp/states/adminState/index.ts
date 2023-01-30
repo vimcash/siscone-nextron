@@ -11,8 +11,10 @@ export {
   selectQueryWhere,
   selectCategories, 
   selectCategory,
+  selectAdmin, 
   setByMonth,
   setByYear,
   setTemporality,
-  setQueryWhere
+  setQueryWhere,
+  setExternalLoad
 } from './adminState'

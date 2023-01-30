@@ -18,6 +18,9 @@ const actions = {
   },
   setQueryWhere: (state, {payload}: PayloadAction<string>) => {
     state.queryWhere = payload
+  },
+  setExternalLoad: (state) => {
+    state.externalLoad = true
   }
 }
 

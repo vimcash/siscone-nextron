@@ -2,7 +2,7 @@ import { jsPDF } from "jspdf"
 import autoTable from 'jspdf-autotable'
 import { getColumnByIndex } from "./getColumnByIndex"
 
-export const reportGenerator = (titles, slides, footer) => {
+export const reportGenerator = (titles, slides, footer=null) => {
   const doc = new jsPDF()
   const tableRows = []
   doc.text(``, 15, 10);
@@ -14,7 +14,8 @@ export const reportGenerator = (titles, slides, footer) => {
     })
     tableRows.push(row)
   });
-  tableRows.push(footer)
+  if(footer)
+    tableRows.push(footer)
   autoTable(doc, {
     head: [titles],
     body: tableRows,

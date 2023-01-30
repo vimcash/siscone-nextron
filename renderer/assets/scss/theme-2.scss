@@ -16,3 +16,15 @@
   --bsp-bg-footer: #000;
   --bsp-font-color-footer: #fff
 }
+
+.swal2-popup {
+  background: #1e1e1e !important;
+  color: rgba(255,255,255,.9) !important;
+}
+.swal2-styled.swal2-confirm {
+  background-color: #1f90de !important;
+}
+.swal2-validation-message {
+  background: #3d3d3d !important;
+  color: rgba(255,255,255,.9) !important;
+}

@@ -1,7 +1,7 @@
-export const TitleValueLabel = ({value, title, className}) => (
+export const TitleValueLabel = ({value, title, className, fontSize=6}) => (
   <div className={className}>
-    <label className="w-100 fs-4">{title}</label>
-    <label className="h1 ps-1" style={{color: "var(--bsp-btn-font-color)"}}>{value}</label>
+    <label className={`d-block fs-${fontSize + 1}`}>{title}</label>
+    <label className={`h${fontSize} ps-1`} style={{color: "var(--bsp-btn-font-color)"}}>{value}</label>
   </div>
 )
 
