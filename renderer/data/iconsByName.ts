@@ -1,5 +1,5 @@
 import { FaFileCsv } from 'react-icons/fa'
-import { BsFillCreditCard2BackFill } from 'react-icons/bs'
+import { BsFillCreditCard2BackFill, BsFillCalendarDateFill } from 'react-icons/bs'
 import { RiFileChartFill } from 'react-icons/ri'
 import { MdSettings, MdCancel } from 'react-icons/md'
 import { IoIosSave } from 'react-icons/io'
@@ -14,5 +14,6 @@ export const iconsByName = {
   save: IoIosSave,
   cancel: MdCancel,
   back: TiArrowBack,
-  excel: SiMicrosoftexcel
+  excel: SiMicrosoftexcel,
+  calendar: BsFillCalendarDateFill
 }

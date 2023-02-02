@@ -1,14 +1,14 @@
 import { AdminFilterPad, Spinner } from "../../../../components/ui"
 import { useAppDispatch } from "../../../../hooks"
-import { convertTotalsToReport, exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
+import { calendarToDate, convertTotalsToReport, exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
 import { cleanRadioButton } from "../../../../utils/cleanRadioButton"
 import { useGetYears, usePutTotals } from "../../hooks"
-import { setByMonth, setByYear, setCategory, setTemporality } from "../../states/adminState/adminState"
+import { setByMonth, setByQueryWhere, setByYear, setCategory, setDateFrom, setDateTo, setTemporality } from "../../states/adminState/adminState"
 import { RowDisplayLabels } from "../RowDisplayLabels.tsx/RowDisplayLabels"
 
 export const AdminLiteFrame = ({admin}) => {
   const dispatch = useAppDispatch()
-  const { listButtons, months, years, categories, findByMonth, findByYear, category, externalLoad, totals, titlesLite } = admin
+  const { listButtons, categories, category, externalLoad, totals, titlesLite, dateFrom, dateFrom1 } = admin
   if (externalLoad){
     dispatch(usePutTotals({queryWhere:'', category: 'GENERAL'}))
     dispatch(useGetYears())
@@ -30,19 +30,33 @@ export const AdminLiteFrame = ({admin}) => {
     <div className="mt-2">
       <AdminFilterPad 
         radioOptions={listButtons}
-        onClickRadio={e => {
+        onClickRadio={async(e) => {
+          const queryWhere = getWhereByCase(e)
           dispatch(setTemporality(e))
-          dispatch(usePutTotals({queryWhere: getWhereByCase(e), category}))
+          await dispatch(setByQueryWhere(queryWhere))
+          dispatch(usePutTotals({queryWhere, category}))
         }}
         onChangeComboBox={e => onChangeComboBox(e)}
-        months={months}
-        years={years}
         categories={categories}
-        selectedMonth={findByMonth}
-        selectedYear={findByYear}
         selectedCategory={category}
-        onClickPrint={() => reportGenerator(titlesLite, convertTotalsToReport(totals))}
-        onClickReport={() => exportCSV(titlesLite, convertTotalsToReport(totals))}/>
+        onClickPrint={() => reportGenerator(titlesLite, convertTotalsToReport(totals), null, `${calendarToDate(dateFrom).replaceAll(".", "/")} ${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
+        onClickReport={() => exportCSV(titlesLite, convertTotalsToReport(totals))}
+        dateFrom={dateFrom}
+        dateTo={dateFrom1}
+        onChangeDateFrom={e => {
+          if(dateFrom){
+            dispatch(setDateFrom(e))
+            console.log(`${calendarToDate(e)}, ${calendarToDate(dateFrom1)}`)
+            dispatch(usePutTotals({queryWhere: `${calendarToDate(e)}, ${calendarToDate(dateFrom1)}`, category}))
+          }
+        }}
+        onChangeDateTo={e => {
+          if(dateFrom1){
+            dispatch(setDateTo(e))
+            console.log(`${calendarToDate(dateFrom)}, ${calendarToDate(e)}`)
+            dispatch(usePutTotals({queryWhere: `${calendarToDate(dateFrom)}, ${calendarToDate(e)}`, category}))
+          }
+        }}/>
       {
         totals ? 
           <div className="row">

@@ -174,3 +174,27 @@ button > span > label {
   bottom: 0;
   padding-bottom: 1.5em;
 }
+.p-hide {
+  width: 20px;
+  position:absolute;
+  padding: 0 85px 10px 0;
+  z-index: 2;
+  opacity: 0;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: blue;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.va-center > span > svg {
+  position: relative;
+  bottom: 2px;
+  z-index: 1;
+}

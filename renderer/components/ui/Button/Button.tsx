@@ -6,7 +6,7 @@ export const Button =
     <button 
       style={primary ? {color: "var(--bsp-btn-font-color)", background: "var(--bsp-primary-button)"} : {color: "var(--bsp-btn-font-color)"}}
       type="submit" 
-      className={'btn ' + className} 
+      className={`btn ${className} ${left? "va-center" : ""}`} 
       onClick={onClick}>
         <span>
           {icon ? <IconByName icon={icon} /> : undefined}

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 import { AppState } from "../../../../data/store/types"
+import { formatDate } from "../../../../utils"
 import { usePutSlide, useGetYears } from "../../hooks"
 import { usePutTotals } from "../../hooks/usePutTotals"
 import actions from "./actions"
@@ -33,6 +34,8 @@ const initialState = {
     {title: "Noviembre", value: "11"},
     {title: "Diciembre", value: "12"},
   ],
+  dateFrom: '2023-02-01', 
+  dateFrom1: '2023-02-01', 
   temporality: "",
   findByYear: "",
   findByMonth: "",
@@ -111,6 +114,6 @@ export const selectFindByYear = (state:AppState) => state.admin.findByYear
 export const selectQueryWhere = (state:AppState) => state.admin.selectQueryWhere
 export const selectAdmin = (state:AppState) => state.admin
 
-export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere, setExternalLoad } = adminState.actions
+export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere, setExternalLoad, setDateFrom, setDateTo, setByQueryWhere } = adminState.actions
 
 export default adminState.reducer

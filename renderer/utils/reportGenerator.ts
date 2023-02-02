@@ -2,10 +2,10 @@ import { jsPDF } from "jspdf"
 import autoTable from 'jspdf-autotable'
 import { getColumnByIndex } from "./getColumnByIndex"
 
-export const reportGenerator = (titles, slides, footer=null) => {
+export const reportGenerator = (titles, slides, footer=null, top=null) => {
   const doc = new jsPDF()
   const tableRows = []
-  doc.text(``, 15, 10);
+  doc.text(top, 15, 10);
   slides.forEach(slide => {
     let column = 0
     const row = []

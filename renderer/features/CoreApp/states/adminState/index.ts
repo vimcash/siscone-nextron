@@ -16,5 +16,8 @@ export {
   setByYear,
   setTemporality,
   setQueryWhere,
-  setExternalLoad
+  setExternalLoad,
+  setDateFrom, 
+  setDateTo,
+  setByQueryWhere
 } from './adminState'
