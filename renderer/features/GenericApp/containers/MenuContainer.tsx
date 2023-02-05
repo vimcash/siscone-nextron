@@ -1,45 +1,49 @@
 import { useRouter } from "next/router";
+import { Spinner } from "../../../components/ui";
+import { getDbHost } from "../../../data";
 import { useAppDispatch, useAppSelector, useReadConfig } from "../../../hooks";
 import { Navbar } from "../../../layouts/Navbar";
-import { selectCurrPage, setCurrPage } from "../../../states/globalState";
-import { delayPage } from "../../../utils";
-import { useGetYears, usePutSlide } from "../../CoreApp/hooks";
+import { selectGlobal } from "../../../states/globalState";
+import { delayPage, showPasswordPopup } from "../../../utils";
+import { setExternalLoad } from "../../CoreApp/states/adminState";
 import { MenuFrame } from "../components";
 import { useGetConfig } from "../hooks";
 
 const MenuContainer = () => {
   const dispatch = useAppDispatch()
-  const currPage = useAppSelector(selectCurrPage)
+  const { currPage, adminPass } = useAppSelector(selectGlobal)
   const router = useRouter()
+  if(!getDbHost()){
+    dispatch(useReadConfig())
+  }
   delayPage()
-
-  const toMenuPage = (route:string) => {
-    if(route == "admin"){
-      dispatch(usePutSlide(''))
-      dispatch(useGetYears())
-    }
-    if(currPage == "")
-      dispatch(setCurrPage(route))
-    router.push(`/${route}`)
+  const autoRedirect = async () => {
+    if(!currPage)
+      return
+    if(currPage == 'admin')
+      await dispatch(setExternalLoad())
+    router.push(currPage)
   }
-  if(currPage){
-    toMenuPage(currPage)
-  }
-  const toConfigPage = () => {
+  autoRedirect()
+  dispatch(useReadConfig())
+  const toConfigPage = async () => {
+    await dispatch(useReadConfig())
     dispatch(useGetConfig())
     router.push('/config')
   }
-  dispatch(useReadConfig())
+  const toMenuPage = async (route:string) => {
+    route == 'admin' ? await dispatch(setExternalLoad()) : undefined
+    router.push(route)
+  }
   return (
     <>
       <Navbar 
         title="Menu"
-        onClickRightButton={() => toConfigPage()}
+        onClickRightButton={() => showPasswordPopup('Clave de Acceso', adminPass, () => toConfigPage())}
         home/>
-      <hr />
       <div id="home" className={`container-fluid d-none`}>
         <MenuFrame 
-          onClickAdmin={() => toMenuPage('admin')}
+          onClickAdmin={() => showPasswordPopup('Clave de Acceso', adminPass, () => toMenuPage('admin'))}
           onClickUser={() => toMenuPage('user')}/> 
       </div>
     </>

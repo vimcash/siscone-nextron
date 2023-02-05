@@ -1,7 +1,7 @@
-import AdminContainer from "../features/CoreApp/containers/AdminContainer"
+import { AdminLiteContainer } from "../features/CoreApp/containers/AdminLiteContainer"
 
 export const admin = 
-  () => <AdminContainer />
+  () => <AdminLiteContainer />
 
 
 export default admin

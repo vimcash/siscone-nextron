@@ -1,3 +1,3 @@
 let dbHost:any
-export const setDbHost = (inDBHost) => dbHost = inDBHost
+export const setDbHost = (inDBHost) => inDBHost !== dbHost? dbHost = inDBHost : undefined
 export const getDbHost = () => dbHost

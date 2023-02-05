@@ -26,8 +26,17 @@ export const slideState = createSlice({
       })
       .addCase(usePostSlide.fulfilled, (state, actions) => {
         state.status = 'idle'
-        if(!actions.payload){
-          toast.error('Ups! Algo salio mal')
+        console.log(actions.payload)
+        if(!actions.payload || actions.payload == 'NOT OK'){
+          toast.error('Ups! Algo salio mal1')
+          state.currentCode = ""
+          return
+        }
+        if(actions.payload != 'OK')
+        {
+          const response = actions.payload.trim() == 'INVALID'? 'Fuera de hora!' : 'Duplicado'
+          toast.warning(response)
+          state.lastCode = response
           state.currentCode = ""
           return
         }

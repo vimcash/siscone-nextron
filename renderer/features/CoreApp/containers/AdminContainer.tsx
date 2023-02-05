@@ -1,43 +1,26 @@
-import { useAppSelector } from "../../../hooks"
+import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { Navbar } from "../../../layouts/Navbar"
 import { AdminFrame } from "../components"
-import { selectCurrPage } from "../../../states/globalState"
-import { 
-  selectDataSource, 
-  selectFindByMonth, 
-  selectFindByYear, 
-  selectListButtons, 
-  selectMonths, 
-  selectTitles, 
-  selectYears 
-} from "../states/adminState"
-import { goBack } from "../../../utils"
+import { selectAdmin, setExternalLoad } from "../states/adminState"
 import { useRouter } from "next/router"
+import { setDelay } from "../../../utils"
 
 const AdminContainer = () => {
+  const dispatch = useAppDispatch()
   const router = useRouter()
-  const titles = useAppSelector(selectTitles)
-  const buttons = useAppSelector(selectListButtons)
-  const months = useAppSelector(selectMonths)
-  const dataSource = useAppSelector(selectDataSource)
-  const years = useAppSelector(selectYears)
-  const findByYear = useAppSelector(selectFindByYear)
-  const findByMonth = useAppSelector(selectFindByMonth)
+  const admin = useAppSelector(selectAdmin)
   return (
     <>
       <Navbar 
         title="Administrador" 
-        onClickRightButton={() => goBack(router)}/>
-      <hr />
+        onClickRightButton={async () =>{ 
+          await dispatch(setExternalLoad())
+          await setDelay(.5)
+          router.push('/admin')}
+        }/>
       <div className="container-fluid">
         <AdminFrame 
-          titles={titles}
-          buttons={buttons}
-          months={months}
-          dataSource={dataSource}
-          years={years}
-          findByMonth={findByMonth}
-          findByYear={findByYear}/>
+          admin={admin} />
       </div>
     </>
   )

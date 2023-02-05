@@ -1,8 +1,8 @@
 import React from 'react'
 import {inputLabel as Interface} from './Interface'
 
-export const InputLabel = ({title, onChangeValue, type = 'text', disabled = false, value}:Interface, ) => (
-  <div className="form-floating mb-3">
+export const InputLabel = ({title, onChangeValue, type = 'text', disabled = false, value, className="mb-3"}:Interface, ) => (
+  <div className={`form-floating ${className}`}>
     <input 
       type={type} 
       className="form-control" 

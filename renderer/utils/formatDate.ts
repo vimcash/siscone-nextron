@@ -1,7 +1,7 @@
 import { isDate } from "./isDate"
 
 export const formatDate = 
-  (date:Date, format:string) => {
+  (date, format) => {
     if(isDate(date))
       return format
         .replace('yyyy', `${date}`.slice(0, 4))
@@ -11,14 +11,13 @@ export const formatDate =
         .replace('hh', `${date}`.slice(11, 13))
         .replace('mm', `${date}`.slice(14, 16))
         .replace('ss', `${date}`.slice(17, 19))
-
-      format
-        .replace('yyyy', `${date.getFullYear()}` + 1)
-        .replace('yy', `${date.getFullYear()}`.slice(-2))
-        .replace('MM', `${date.getMonth()}`)
-        .replace('dd', `${date.getMonth()}`)
-        .replace('hh', `${date.getHours()}`)
-        .replace('mm', `${date.getMinutes()}` + 1)
-        .replace('ss', `${date.getSeconds()}` + 1)
     return format
+      .replace('yyyy', `${format.indexOf("NM") > -1 && date.getMonth() == 11? date.getFullYear() + 1 : date.getFullYear()}`)
+      .replace('yy', `${format.indexOf("NM") > -1 && date.getMonth() == 11? date.getFullYear() + 1 : date.getFullYear()}`.slice(-2))
+      .replace('MM', `${date.getMonth()+1}`.padStart(2,'0'))
+      .replace('NM', `${date.getMonth() == 11 ? 1 : date.getMonth()+2}`.padStart(2,'0'))
+      .replace('dd', `${date.getDate()}`.padStart(2,'0'))
+      .replace('hh', `${date.getHours()}`.padStart(2,'0'))
+      .replace('mm', `${date.getMinutes()}`.padStart(2,'0'))
+      .replace('ss', `${date.getSeconds()}`.padStart(2,'0'))
 }

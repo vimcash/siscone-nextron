@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~@sweetalert2/theme-dark/dark.scss';
 @import './scss/theme-1.scss';
 @import './scss/theme-2.scss';
 @import './scss/responsiveSizes.scss';
@@ -123,6 +124,7 @@
     --bs-table-color: var(--bsp-btn-font-color);
     --bs-table-border-color: var(--bsp-bg-navbar-line);
   }
+
 } 
 
 a {
@@ -163,13 +165,36 @@ button > span > label {
 
 .p-table {
   overflow-y: auto;
-  margin-bottom: 1em;
   width: -webkit-fill-available;
   height: -webkit-fill-available;
-  margin-bottom: 7.5em;;
+  margin-bottom: 6em;
 }
 
 .stats {
   bottom: 0;
   padding-bottom: 1.5em;
+}
+.p-hide {
+  width: 20px;
+  position:absolute;
+  padding: 0 85px 10px 0;
+  z-index: 2;
+  opacity: 0;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: blue;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.va-center > span > svg {
+  position: relative;
+  bottom: 2px;
+  z-index: 1;
 }
