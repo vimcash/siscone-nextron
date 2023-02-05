@@ -1,18 +1,13 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { calendarToDate } from "../../../../utils";
+import { calendarToDate, getCheckBoxByTemp } from "../../../../utils";
 
 const actions = {
   setTemporality: (state, {payload}: PayloadAction<string>) => {
-    state.findByYear = `${(new Date()).getFullYear()}`
-    state.findByMonth = payload == "Month" ? `${(new Date()).getMonth() + 1}` : ""
+    state.checkbox = getCheckBoxByTemp(payload)
   },
-  setByYear: (state, {payload}: PayloadAction<string>) => {
-    state.findByYear = payload
-    state.findByMonth = ""
-  },
-  setByMonth: (state, {payload}: PayloadAction<string>) => {
-    state.findByMonth = payload
-    state.findByYear = `${(new Date()).getFullYear()}`
+  setInitToCheckbox: (state) => {
+    state.checkbox = getCheckBoxByTemp("")
+    console.log(state.checkbox)
   },
   setCategory: (state, {payload}: PayloadAction<string>) => {
     state.category = payload
@@ -46,6 +41,9 @@ const actions = {
     state.dateFrom = `${calendarToDate(datesArray[0], ".").replaceAll("'", "").replaceAll(".", "-")}`
     state.dateFrom1 = `${calendarToDate(datesArray[1], ".").replaceAll("'", "").replaceAll(".", "-")}`
     console.log(state.dateFrom, state.dateFrom1)
+  },
+  setGoToDetail: (state) => {
+    state.goToDetail = true
   }
 }
 

@@ -1,17 +1,22 @@
-import { AdminFilterPad, Spinner } from "../../../../components/ui"
+import { AdminFilterPad, Button, Spinner } from "../../../../components/ui"
 import { useAppDispatch } from "../../../../hooks"
-import { calendarToDate, convertTotalsToReport, exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
-import { cleanRadioButton } from "../../../../utils/cleanRadioButton"
-import { useGetYears, usePutTotals } from "../../hooks"
-import { setByMonth, setByQueryWhere, setByYear, setCategory, setDateFrom, setDateTo, setTemporality } from "../../states/adminState/adminState"
+import { setCurrPage } from "../../../../states/globalState"
+import { calendarToDate, convertTotalsToReport, exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator, setDelay } from "../../../../utils"
+import { usePutTotals } from "../../hooks"
+import { setByQueryWhere, setCategory, setDateFrom, setDateTo, setGoToDetail, setInitToCheckbox, setTemporality } from "../../states/adminState/adminState"
 import { RowDisplayLabels } from "../RowDisplayLabels.tsx/RowDisplayLabels"
 
-export const AdminLiteFrame = ({admin}) => {
+export const AdminLiteFrame = ({admin, router}) => {
   const dispatch = useAppDispatch()
-  const { listButtons, categories, category, externalLoad, totals, titlesLite, dateFrom, dateFrom1 } = admin
+  const { listButtons, categories, category, externalLoad, totals, titlesLite, dateFrom, dateFrom1, goToDetail, checkbox } = admin
+
+  const addCurrPage = async () => {
+    await setDelay(.5)
+    dispatch(setCurrPage('admin'))
+  }
   if (externalLoad){
-    dispatch(usePutTotals({queryWhere:'', category: 'GENERAL'}))
-    dispatch(useGetYears())
+    dispatch(usePutTotals({queryWhere: `${calendarToDate(dateFrom)}, ${calendarToDate(dateFrom1)}`, category}))
+    addCurrPage()
     return <Spinner />
   }
   const onChangeComboBox = (inValue:string) => {
@@ -21,15 +26,21 @@ export const AdminLiteFrame = ({admin}) => {
       dispatch(usePutTotals({category}))
       return 
     }
-    cleanRadioButton("temp")
-    inValue.length == 4 ? dispatch(setByYear(inValue)) : dispatch(setByMonth(inValue))
-    const queryWhere = getWhereByCase(inValue)
-    dispatch(usePutTotals({queryWhere, category}))
   }
   return (
     <div className="mt-2">
+      <Button 
+        icon="moreDetails" 
+        className="position-fixed fs-5 p-2 pps-rb" 
+        title="Detalles" 
+        onClick={async () => {
+          await dispatch(setGoToDetail())
+          router.push('/adminDetail')
+        }}
+        left primary/>
       <AdminFilterPad 
         radioOptions={listButtons}
+        radioValue={checkbox}
         onClickRadio={async(e) => {
           const queryWhere = getWhereByCase(e)
           dispatch(setTemporality(e))
@@ -45,15 +56,15 @@ export const AdminLiteFrame = ({admin}) => {
         dateTo={dateFrom1}
         onChangeDateFrom={e => {
           if(dateFrom){
+            dispatch(setInitToCheckbox())
             dispatch(setDateFrom(e))
-            console.log(`${calendarToDate(e)}, ${calendarToDate(dateFrom1)}`)
             dispatch(usePutTotals({queryWhere: `${calendarToDate(e)}, ${calendarToDate(dateFrom1)}`, category}))
           }
         }}
         onChangeDateTo={e => {
           if(dateFrom1){
+            dispatch(setInitToCheckbox())
             dispatch(setDateTo(e))
-            console.log(`${calendarToDate(dateFrom)}, ${calendarToDate(e)}`)
             dispatch(usePutTotals({queryWhere: `${calendarToDate(dateFrom)}, ${calendarToDate(e)}`, category}))
           }
         }}/>

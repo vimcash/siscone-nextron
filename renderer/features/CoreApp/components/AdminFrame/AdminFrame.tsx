@@ -1,35 +1,35 @@
-import { RadioButton, ComboBox, Table, TitleValueLabel, Button, Spinner, AdminFilterPad } from "../../../../components/ui"
+import { Table, TitleValueLabel, Spinner, AdminFilterPad } from "../../../../components/ui"
 import { useAppDispatch} from "../../../../hooks"
-import { exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator } from "../../../../utils"
-import { cleanRadioButton } from "../../../../utils/cleanRadioButton"
-import { useGetYears, usePutSlide } from "../../hooks"
-import { setByMonth, setByYear, setTemporality } from "../../states/adminState"
-import { setCategory } from "../../states/adminState/adminState"
+import { calendarToDate, exportCSV, formatMoney, getColumnByIndex, getWhereByCase, isNumber, reportGenerator, setDelay } from "../../../../utils"
+import { usePutSlide } from "../../hooks"
+import { setTemporality } from "../../states/adminState"
+import { setByQueryWhere, setCategory, setDateFrom, setDateTo, setInitToCheckbox } from "../../states/adminState/adminState"
 
 export const AdminFrame = ({ admin }) => {
   const {
     listButtons,
-    months,
-    findByMonth,
-    years,
-    findByYear,
     titles,
     dataSource,
     categories,
     category,
-    externalLoad,
+    dateFrom, 
+    dateFrom1, 
+    goToDetail,
+    totalsDetail,
+    checkbox
   } = admin
+  const {breakfast, lunch, dinner, money, subsidy, total} = totalsDetail
   const dispatch = useAppDispatch()
-  if (externalLoad){
-    dispatch(usePutSlide({queryWhere:'', category: 'GENERAL'}))
-    dispatch(useGetYears())
+  const taskDelay = async () => {
+    await setDelay(.5)
+    await dispatch(usePutSlide({queryWhere: `${calendarToDate(dateFrom)}, ${calendarToDate(dateFrom1)}`, category}))
+  }
+  if(goToDetail){
+    taskDelay()
     return (
       <Spinner />
     )
   }
-  const initialValue = 0;
-  const totalPrice = dataSource.reduce((acumulator, currentVal) => acumulator + Number(currentVal.PRICE),initialValue)
-  const totalSubsidy = dataSource.reduce((acumulator, currentVal) => acumulator + Number(currentVal.SUBSIDY),initialValue)
   const onChangeComboBox = (inValue:string) => {
     if(!isNumber(inValue)){
       dispatch(setCategory(inValue))
@@ -37,39 +37,62 @@ export const AdminFrame = ({ admin }) => {
       dispatch(usePutSlide({category}))
       return 
     }
-    cleanRadioButton("temp")
-    inValue.length == 4 ? dispatch(setByYear(inValue)) : dispatch(setByMonth(inValue))
-    const queryWhere = getWhereByCase(inValue)
-    dispatch(usePutSlide({queryWhere, category}))
   }
   return (
     <div className="mt-2">
-      <AdminFilterPad 
+      <AdminFilterPad
+        radioValue={checkbox} 
         radioOptions={listButtons}
-        onClickRadio={e => {
+        onClickRadio={async(e) => {
+          const queryWhere = getWhereByCase(e)
           dispatch(setTemporality(e))
-          dispatch(usePutSlide({queryWhere: getWhereByCase(e), category}))}}
+          await dispatch(setByQueryWhere(queryWhere))
+          dispatch(usePutSlide({queryWhere, category}))
+        }}
         onChangeComboBox={e => onChangeComboBox(e)}
-        months={months}
-        years={years}
         categories={categories}
-        selectedMonth={findByMonth}
-        selectedYear={findByYear}
         selectedCategory={category}
-        onClickPrint={() => reportGenerator(titles, dataSource, ['Total', `${dataSource.length}`, `${formatMoney(totalPrice)}`, `${formatMoney(totalSubsidy)}`, `${formatMoney(totalPrice + totalSubsidy)}`])}
-        onClickReport={() => () => exportCSV(titles, dataSource, `Total:,${dataSource.length},${formatMoney(totalPrice)},${formatMoney(totalSubsidy)},${formatMoney(totalPrice + totalSubsidy)}`)}/>
+        onClickPrint={
+          () => reportGenerator(
+            titles, 
+            dataSource, 
+            [
+              'Total', 
+              `${dataSource.length}`, 
+              `${formatMoney(money)}`, 
+              `${formatMoney(subsidy)}`, 
+              `${formatMoney(total)}`
+            ], 
+            `${calendarToDate(dateFrom).replaceAll(".", "/")} ${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
+        onClickReport={() => exportCSV(titles, dataSource, `Total:,${dataSource.length},${formatMoney(money)},${formatMoney(subsidy)},${formatMoney(total)}`)}
+        dateFrom={dateFrom}
+        dateTo={dateFrom1}
+        onChangeDateFrom={e => {
+          if(dateFrom){
+            dispatch(setInitToCheckbox())
+            dispatch(setDateFrom(e))
+            dispatch(usePutSlide({queryWhere: `${calendarToDate(e)}, ${calendarToDate(dateFrom1)}`, category}))
+          }
+        }}
+        onChangeDateTo={e => {
+          if(dateFrom1){
+            dispatch(setInitToCheckbox())
+            dispatch(setDateTo(e))
+            dispatch(usePutSlide({queryWhere: `${calendarToDate(dateFrom)}, ${calendarToDate(e)}`, category}))
+          }
+        }}/>
       <div className="p-table position-absolute pe-3">
         <Table 
           titles={titles}
           dataSource={dataSource}/>
       </div>
       <div className="stats row w-100 position-absolute">
-        <TitleValueLabel className="col-auto" title="Desayunos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "DESAYUNO").length}`} />
-        <TitleValueLabel className="col-auto" title="Almuerzos" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "ALMUERZO").length}`} />
-        <TitleValueLabel className="col-auto" title="Cenas" value={`${dataSource.filter(slide => getColumnByIndex(slide, 1) == "CENA").length}`} />
-        <TitleValueLabel className="col-auto" title="Pagos" value={`${formatMoney(totalPrice)}`} />
-        <TitleValueLabel className="col-auto" title="Subsidios" value={`${formatMoney(totalSubsidy)}`} />
-        <TitleValueLabel className="col-auto" title="Total" value={`${formatMoney(totalPrice + totalSubsidy)}`} />
+        <TitleValueLabel className="col-auto" title="Desayunos" value={`${breakfast}`} />
+        <TitleValueLabel className="col-auto" title="Almuerzos" value={`${lunch}`} />
+        <TitleValueLabel className="col-auto" title="Cenas" value={`${dinner}`} />
+        <TitleValueLabel className="col-auto" title="Pagos" value={`${formatMoney(money)}`} />
+        <TitleValueLabel className="col-auto" title="Subsidios" value={`${formatMoney(subsidy)}`} />
+        <TitleValueLabel className="col-auto" title="Total" value={`${formatMoney(total)}`} />
       </div>
 
 

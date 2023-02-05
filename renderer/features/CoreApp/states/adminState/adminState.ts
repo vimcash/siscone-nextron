@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 import { AppState } from "../../../../data/store/types"
-import { formatDate } from "../../../../utils"
+import { formatDate, toTotalsDetail } from "../../../../utils"
 import { usePutSlide, useGetYears } from "../../hooks"
 import { usePutTotals } from "../../hooks/usePutTotals"
 import actions from "./actions"
@@ -16,32 +16,30 @@ const initialState = {
     {title:"Este mes", value:"Month"},
     {title:"Hoy", value:"Day"},
   ],
+  totalsDetail: {
+    breakfast: 0,
+    lunch: 0,
+    dinner: 0,
+    money: 0,
+    subsidy: 0,
+    total: 0
+  },
   dataSource: [],
   totals: {},
   years: [],
-  months: [
-    {title: "", value: "0"},
-    {title: "Enero", value: "1"},
-    {title: "Febrero", value: "2"},
-    {title: "Marzo", value: "3"},
-    {title: "Abril", value: "4"},
-    {title: "Mayo", value: "5"},
-    {title: "Junio", value: "6"},
-    {title: "Julio", value: "7"},
-    {title: "Agosto", value: "8"},
-    {title: "Septiembre", value: "9"},
-    {title: "Octubre", value: "10"},
-    {title: "Noviembre", value: "11"},
-    {title: "Diciembre", value: "12"},
-  ],
-  dateFrom: '2023-02-01', 
-  dateFrom1: '2023-02-01', 
+  goToDetail: false,
+  dateFrom: formatDate(new Date(), 'yyyy-MM-01'), 
+  dateFrom1: formatDate(new Date(), 'yyyy-NM-01'), 
   temporality: "",
-  findByYear: "",
-  findByMonth: "",
+  checkbox: {
+    year: false,
+    month: true,
+    day: false
+  },
   category: "GENERAL",
   queryWhere: "",
   externalLoad: false,
+  loading: false,
   adminVersion: "lite"
 }
 export const adminState = createSlice({
@@ -59,12 +57,14 @@ export const adminState = createSlice({
       })
       .addCase(usePutSlide.fulfilled, (state, actions) =>{
         state.status = 'idle'
-        if(!actions.payload || actions.payload.gdscode){
+        if(!actions.payload.slides || actions.payload.slides.gdscode){
           toast.error('Ups! Algo salio mal')
           return
         }
-        state.dataSource = actions.payload
-        state.externalLoad = false
+        state.dataSource = actions.payload.slides
+        state.totalsDetail = toTotalsDetail(actions.payload.totals)
+        console.log(state.totalsDetail)
+        state.goToDetail = false
       })
       .addCase(usePutTotals.pending, (state) => {
         state.status = 'loading'
@@ -106,14 +106,10 @@ export const selectCategories = (state:AppState) => state.admin.categories
 export const selectCategory = (state:AppState) => state.admin.category
 export const selectListButtons = (state:AppState) => state.admin.listButtons
 export const selectDataSource = (state:AppState) => state.admin.dataSource
-export const selectYears = (state:AppState) => state.admin.years
-export const selectMonths = (state:AppState) => state.admin.months
 export const selectTemporality = (state:AppState) => state.admin.temporality
-export const selectFindByMonth = (state:AppState) => state.admin.findByMonth
-export const selectFindByYear = (state:AppState) => state.admin.findByYear
 export const selectQueryWhere = (state:AppState) => state.admin.selectQueryWhere
 export const selectAdmin = (state:AppState) => state.admin
 
-export const { setByYear, setByMonth, setTemporality, setCategory, setQueryWhere, setExternalLoad, setDateFrom, setDateTo, setByQueryWhere } = adminState.actions
+export const { setTemporality, setCategory, setQueryWhere, setExternalLoad, setDateFrom, setDateTo, setByQueryWhere, setGoToDetail, setInitToCheckbox } = adminState.actions
 
 export default adminState.reducer

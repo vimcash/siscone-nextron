@@ -9,6 +9,7 @@ const SlideContainer = () => {
   const router = useRouter()
   const lastCode = useAppSelector(selectLastCode)
   const currentCode = useAppSelector(selectCurrentCode)
+  const currPage = useAppSelector(selectCurrentCode)
   return (
     <>
       <Navbar 
@@ -17,7 +18,8 @@ const SlideContainer = () => {
       <div className="container-fluid">
         <SlideFrame 
           lastCode={lastCode}
-          currentCode={currentCode}/>
+          currentCode={currentCode}
+          currPage={currPage}/>
       </div>
     </>
   )

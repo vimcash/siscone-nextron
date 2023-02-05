@@ -5,6 +5,7 @@ import { MdSettings, MdCancel } from 'react-icons/md'
 import { IoIosSave } from 'react-icons/io'
 import { TiArrowBack } from 'react-icons/ti'
 import { SiMicrosoftexcel } from 'react-icons/si'
+import { CgDetailsMore } from 'react-icons/cg'
 
 export const iconsByName = {
   fileCsv: FaFileCsv,
@@ -15,5 +16,6 @@ export const iconsByName = {
   cancel: MdCancel,
   back: TiArrowBack,
   excel: SiMicrosoftexcel,
-  calendar: BsFillCalendarDateFill
+  calendar: BsFillCalendarDateFill,
+  moreDetails: CgDetailsMore
 }

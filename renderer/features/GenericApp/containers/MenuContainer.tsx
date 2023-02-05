@@ -1,33 +1,39 @@
 import { useRouter } from "next/router";
+import { Spinner } from "../../../components/ui";
+import { getDbHost } from "../../../data";
 import { useAppDispatch, useAppSelector, useReadConfig } from "../../../hooks";
 import { Navbar } from "../../../layouts/Navbar";
-import {selectGlobal, setCurrPage } from "../../../states/globalState";
+import { selectGlobal } from "../../../states/globalState";
 import { delayPage, showPasswordPopup } from "../../../utils";
-import { useGetYears, usePutSlide } from "../../CoreApp/hooks";
 import { setExternalLoad } from "../../CoreApp/states/adminState";
 import { MenuFrame } from "../components";
 import { useGetConfig } from "../hooks";
 
 const MenuContainer = () => {
   const dispatch = useAppDispatch()
-  const { currPage, adminPass} = useAppSelector(selectGlobal)
+  const { currPage, adminPass } = useAppSelector(selectGlobal)
   const router = useRouter()
+  if(!getDbHost()){
+    dispatch(useReadConfig())
+  }
   delayPage()
-  const toMenuPage = async (route:string) => {
-    await dispatch(useReadConfig())
-    if(currPage == "admin")
-      await dispatch(setExternalLoad())
+  const autoRedirect = async () => {
     if(!currPage)
-      await dispatch(setCurrPage(route))
+      return
+    if(currPage == 'admin')
+      await dispatch(setExternalLoad())
+    router.push(currPage)
   }
-  if(currPage){
-    toMenuPage(currPage)
-    router.push(`/${currPage}`)
-  }
+  autoRedirect()
+  dispatch(useReadConfig())
   const toConfigPage = async () => {
     await dispatch(useReadConfig())
     dispatch(useGetConfig())
     router.push('/config')
+  }
+  const toMenuPage = async (route:string) => {
+    route == 'admin' ? await dispatch(setExternalLoad()) : undefined
+    router.push(route)
   }
   return (
     <>

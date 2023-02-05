@@ -1,7 +1,7 @@
 import { isDate } from "./isDate"
 
 export const formatDate = 
-  (date:Date, format:string) => {
+  (date, format) => {
     if(isDate(date))
       return format
         .replace('yyyy', `${date}`.slice(0, 4))
@@ -12,9 +12,10 @@ export const formatDate =
         .replace('mm', `${date}`.slice(14, 16))
         .replace('ss', `${date}`.slice(17, 19))
     return format
-      .replace('yyyy', `${date.getFullYear()}`)
-      .replace('yy', `${date.getFullYear()}`.slice(-2))
+      .replace('yyyy', `${format.indexOf("NM") > -1 && date.getMonth() == 11? date.getFullYear() + 1 : date.getFullYear()}`)
+      .replace('yy', `${format.indexOf("NM") > -1 && date.getMonth() == 11? date.getFullYear() + 1 : date.getFullYear()}`.slice(-2))
       .replace('MM', `${date.getMonth()+1}`.padStart(2,'0'))
+      .replace('NM', `${date.getMonth() == 11 ? 1 : date.getMonth()+2}`.padStart(2,'0'))
       .replace('dd', `${date.getDate()}`.padStart(2,'0'))
       .replace('hh', `${date.getHours()}`.padStart(2,'0'))
       .replace('mm', `${date.getMinutes()}`.padStart(2,'0'))

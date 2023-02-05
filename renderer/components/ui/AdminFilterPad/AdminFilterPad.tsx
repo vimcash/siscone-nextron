@@ -1,5 +1,4 @@
 import { Button, ComboBox, RadioButton } from ".."
-import { formatDate } from "../../../utils"
 import { CalendarButton, InputLabel } from "../../form"
 
 export const AdminFilterPad = ({ 
@@ -10,18 +9,21 @@ export const AdminFilterPad = ({
   selectedCategory, 
   onClickPrint,
   onClickReport,
+  radioValue,
   dateFrom,
   dateTo,
   onChangeDateFrom,
   onChangeDateTo,
 }) => {
+  console.log("radioValue", radioValue)
   return (
     <div className="row pe-2 ps-2">
       <RadioButton 
         className="mb-1 me-1 col-sm-auto checkbox"
         onClick={e => onClickRadio(e)}
         options={radioOptions} 
-        name="temp"/>
+        name="temp"
+        value={radioValue}/>
       <CalendarButton 
         title="Desde"
         onChangeValue={e => onChangeDateFrom(e)}

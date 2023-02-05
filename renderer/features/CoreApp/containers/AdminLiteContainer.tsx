@@ -14,7 +14,8 @@ export const AdminLiteContainer = () => {
       onClickRightButton={() => goBack(router)}/>
     <div className="container-fluid">
       <AdminLiteFrame 
-        admin={admin}/>
+        admin={admin}
+        router={router}/>
     </div>
   </>
 }

@@ -8,21 +8,21 @@ export const RowDisplayLabels = ({rowType, countValue, totalPrice, totalSubsidy,
       title={rowType != 'total' ? getNameByRowType(rowType) : 'Cant. Total'}
       value={countValue}
       className={`col-md-2`}
-      fontSize={fontSize}/>      
+      fontSize={fontSize+1}/>      
     <TitleValueLabel 
-      title={rowType != 'total' ? `$ ${getNameByRowType(rowType)}`: 'Total $ Empleado'}
+      title={rowType != 'total' ? `DOP. ${getNameByRowType(rowType)}`: 'Total DOP Empleado'}
       value={totalPrice}
       className={`col-md-3`}
-      fontSize={fontSize}/>
+      fontSize={fontSize+1}/>
     <TitleValueLabel 
-      title={rowType != 'total' ? `Sub. ${getNameByRowType(rowType)}`: 'Total $ Subsidio'}
+      title={rowType != 'total' ? `Sub. ${getNameByRowType(rowType)}`: 'Total DOP Subsidio'}
       value={totalSubsidy}
       className={`col-md-3`}
-      fontSize={fontSize}/>
+      fontSize={fontSize+1}/>
     <TitleValueLabel 
       title={rowType != 'total' ? `Total en ${getNameByRowType(rowType)}`: 'Total'}
       value={total}
       className={`col-md-4`}
-      fontSize={fontSize}/>
+      fontSize={fontSize+1}/>
   </>
 )
