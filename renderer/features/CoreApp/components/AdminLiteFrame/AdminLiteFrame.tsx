@@ -35,7 +35,7 @@ export const AdminLiteFrame = ({admin, router}) => {
         title="Detalles" 
         onClick={async () => {
           await dispatch(setGoToDetail())
-          router.push('/adminDetail')
+          router.push('/detail')
         }}
         left primary/>
       <AdminFilterPad 
@@ -51,7 +51,11 @@ export const AdminLiteFrame = ({admin, router}) => {
         categories={categories}
         selectedCategory={category}
         onClickPrint={() => reportGenerator(titlesLite, convertTotalsToReport(totals), null, `${calendarToDate(dateFrom).replaceAll(".", "/")} ${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
-        onClickReport={() => exportCSV(titlesLite, convertTotalsToReport(totals))}
+        onClickReport={() => exportCSV(
+          titlesLite, 
+          convertTotalsToReport(totals), 
+          null, 
+          `${calendarToDate(dateFrom).replaceAll(".", "/")},${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
         dateFrom={dateFrom}
         dateTo={dateFrom1}
         onChangeDateFrom={e => {

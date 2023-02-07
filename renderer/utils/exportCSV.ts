@@ -3,8 +3,8 @@ import { formatDate, getRandomInt } from "."
 import { getColumnByIndex } from "./getColumnByIndex"
 import * as child from 'child_process'; 
 
-export const exportCSV = (titles, slides, footer=null) => {
-  let content
+export const exportCSV = (titles, slides, footer=null, top=null) => {
+  let content = `${top}\r`
   titles.map(title => content = content ? `${content},${title}`: title)
   slides.forEach(slide => {
     content = `${content}\r`

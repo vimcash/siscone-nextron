@@ -1,7 +1,7 @@
 import AdminContainer from "../features/CoreApp/containers/AdminContainer"
 
-export const adminDetail = 
+export const details = 
   () => <AdminContainer />
 
 
-export default adminDetail
+export default details

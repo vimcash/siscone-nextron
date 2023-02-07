@@ -3,7 +3,7 @@
   "name": "card-slide",
   "description": "My application description",
   "version": "1.3.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Raian Gil del Rosario <raian.gdr@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",

@@ -64,7 +64,12 @@ export const AdminFrame = ({ admin }) => {
               `${formatMoney(total)}`
             ], 
             `${calendarToDate(dateFrom).replaceAll(".", "/")} ${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
-        onClickReport={() => exportCSV(titles, dataSource, `Total:,${dataSource.length},${formatMoney(money)},${formatMoney(subsidy)},${formatMoney(total)}`)}
+        onClickReport={
+          () => exportCSV(
+            titles, 
+            dataSource, 
+            `Total:,${dataSource.length},${formatMoney(money)},${formatMoney(subsidy)},${formatMoney(total)}`,
+            `${calendarToDate(dateFrom).replaceAll(".", "/")},${calendarToDate(dateFrom1).replaceAll(".", "/")}`.replaceAll("'", ""))}
         dateFrom={dateFrom}
         dateTo={dateFrom1}
         onChangeDateFrom={e => {
