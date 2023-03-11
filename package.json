@@ -22,7 +22,6 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.28",
     "next": "^13.1.1",
-    "node-firebird": "^1.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
