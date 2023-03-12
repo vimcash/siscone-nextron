@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { AppState } from "../../data/store/types"
+import { useReadConfig } from "../../hooks";
 import { getLocalStorage } from "../../utils";
 import actions from "./actions"
 
@@ -19,6 +20,11 @@ export const globalSlice = createSlice({
   reducers: actions,
   extraReducers(builder) {
     builder
+      .addCase(useReadConfig.fulfilled, (state, action)=>{
+        if(action.payload && state.dbHost != action.payload.dbHost){
+          state.dbHost = action.payload.dbHost
+        }
+      })
   },
 })
 
