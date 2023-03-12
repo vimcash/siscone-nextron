@@ -1,0 +1,15 @@
+Siscone lite es un sistema lite de gestion de negocios, en este caso estaria enfocado unicamente
+en el inventario del negocio orientado a una gomera:
+
+  * Productos
+    1- Agregar
+    2- Modificar
+    3- Eliminar
+  * Categorias
+    1- Agregar
+    2- Modificar
+    3- Eliminar
+  * Inventario
+    1- Recibir mercancia
+    2- Despachar mercancia
+    3- 
