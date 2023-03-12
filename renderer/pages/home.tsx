@@ -1,4 +1,4 @@
-import { MainMenu } from "../features/dataManager";
+import { MainMenu } from "../features/genericApp";
 
 
 const Home = () => <MainMenu />
