@@ -1,0 +1,79 @@
+.container {
+  background: transparent;
+  border: none;
+  min-width: 39px;
+  transition: all .3s ease-in-out;
+  outline: none;
+  min-height: 39px;
+}
+
+.iconButton {
+  border-radius: 100%;  
+}
+
+.iconButton > div {
+  border-radius: 100%;  
+}
+
+.iconTextButton {
+
+}
+
+.headerIcon {
+  background: transparent;
+  border: none;
+  height: 70px!important;
+  width: 52px!important;
+}
+
+.headerIcon > div {
+  width: 52px!important;
+  height: 52px!important;
+  display: flex;
+}
+
+.container > div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  transition: all .3s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+.container > div > svg > path {
+  transition: all .5s ease-in-out;
+}
+
+.iconButton:hover > div {
+  background: rgb(0, 0, 0, .05);
+}
+
+.container:hover > div > svg > path {
+  stroke: #5d87ff;
+}
+
+.textButton {
+  font-weight: 600!important;
+  padding: 10px 16px;
+  border-radius: 7px;
+}
+
+.primarySelected:hover {
+  background: #4f73d9;
+}
+
+.primarySelected {
+  background: #5D87FF;
+  color: white;
+}
+
+.primary {
+  border: solid 2px #5D87FF;
+  padding: 2px 14px;
+  color: #5D87FF
+}
+
+.primary:hover {
+  border: solid 3px #4f73d9;
+  color: #4f73d9
+}

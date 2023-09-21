@@ -1,13 +1,15 @@
 import { combineReducers } from "@reduxjs/toolkit"
-import globalReducer from "../../states/globalState"
-import configReducer from "../../features/GenericApp/states/configState"
-import slideReducer from "../../features/CoreApp/states/slideState"
-import adminReducer from "../../features/CoreApp/states/adminState"
+import { leftMenuReducer } from "../../layout/LeftMenu/state"
+import { globalReducer } from "../state"
+import { popupReducer } from "../../layout/Popup/state"
+import { adminReducer } from "../../feats/administration/states"
+import { authReducer } from "../../feats/auth/state"
 const reducers = combineReducers({
   global: globalReducer,
-  config: configReducer,
-  slide: slideReducer,
-  admin: adminReducer
+  leftMenu: leftMenuReducer,
+  popup: popupReducer,
+  admin: adminReducer,
+  auth: authReducer
 })
 
 export default reducers

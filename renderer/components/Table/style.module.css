@@ -1,0 +1,43 @@
+.container {
+  overflow: hidden; /* Oculta el scrollbar por defecto */
+  scrollbar-width: think;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 133, 133, 0.2); /* Color del thumb */
+  border-radius: 5px; /* Bordes redondeados */
+}
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(133, 133, 133, 0.3); /* Cambio de color al pasar el mouse */
+}
+.container::-webkit-scrollbar {
+  width: 5px;
+  transition: .3s ease;
+}
+.container:hover {
+  overflow-y: overlay;
+}
+
+/* Muestra el scrollbar al hacer clic (active) */
+.container:active {
+  overflow-y: overlay;
+}
+
+.table {
+  width: -webkit-fill-available;
+  border-spacing: 0;
+  border: 1px solid #ebf1f6;
+  border-radius: 7px;
+}
+
+.table > thead > tr > th {
+  text-align: left;
+  padding: 16px;
+}
+
+.table > tbody > tr > td {
+  padding: 16px;
+}
+
+.table > * > tr > td {
+  border-top: 1px solid #ebf1f6;
+}

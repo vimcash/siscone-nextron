@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+}
+
+.input {
+  display: block;
+  padding: 8px;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: #5a6a85;
+  background-color: transparent;
+  border: 1px solid #dfe5ef;
+  border-radius: 7px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: -webkit-fill-available;
+  outline: none;
+}
+.inputIcon {
+  padding-left: 3rem;
+}
+.icon {
+  position: absolute;
+  margin-left: 1rem;
+  transform: translateY(-50%);
+  left: 0;
+  bottom: -7px;
+}
+
+.icon > svg > path {
+  stroke: rgb(42,53,71);
+}

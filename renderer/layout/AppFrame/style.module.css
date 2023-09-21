@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+   width: 100%;
+}
+.contentContainer {
+  width: calc(100% - 270px);
+}
+.content {
+  padding: 24px;
+  padding-top: calc(70px + 15px);
+}

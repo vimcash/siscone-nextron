@@ -1,0 +1,13 @@
+.container {
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: -webkit-fill-available;
+}
+
+.menuBtn {
+  position: relative;
+  margin-left: -1rem!important;
+}

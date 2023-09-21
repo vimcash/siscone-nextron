@@ -1,0 +1,25 @@
+.tableContainer {
+  height: calc(100vh - 265px);
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.addProduct {
+  position: absolute;
+  padding: 5px;
+  background: #c2c2c2;
+  border-radius: 7px;
+  border-top-left-radius: 0px;
+}
+
+.withForm {
+  height: calc(100% - 205px);
+}
+
+.withoutForm {
+  height: calc(100% - 59px);
+}

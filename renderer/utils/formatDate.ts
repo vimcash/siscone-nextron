@@ -1,7 +1,11 @@
-import { isDate } from "./isDate"
+export const isDate = 
+  (dateString:any) => 
+    `${dateString}`.indexOf('-') == 4 &&
+    `${dateString}`.indexOf('T') == 10 &&
+    (`${dateString}`.indexOf('Z') == 23 || `${dateString}`.indexOf('Z') == 19)
 
 export const formatDate = 
-  (date, format) => {
+  (date:any, format:string) => {
     if(isDate(date))
       return format
         .replace('yyyy', `${date}`.slice(0, 4))

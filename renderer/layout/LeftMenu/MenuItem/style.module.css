@@ -1,0 +1,74 @@
+.item {
+  padding: 10px;
+  font-weight: 400;
+  display: flex;
+  height: 27px;
+  align-items: center;
+}
+
+.item > div {
+  position: relative;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.item > svg > path, .item > div {
+  color: rgba(0,0,0,.5);
+  stroke: rgba(0,0,0,.5);
+}
+
+.noSelect:hover {
+  padding: 8px;
+  border: solid 2px rgba(0,0,0,.05);
+  border-radius: 5px;
+}
+
+.noSelect:active > svg > path, .item > div {
+  color: rgba(0,0,0,.8);
+  stroke: rgba(0,0,0,.8);
+}
+
+.noSelect:active {
+  padding: 8px;
+  border: solid 2px rgba(0,0,0,.15);
+  border-radius: 5px;
+}
+
+.noSelect:hover > svg > path, .item > div {
+  color: rgba(0,0,0,.7);
+  stroke: rgba(0,0,0,.7);
+}
+
+.select > svg > path, .select > div {
+  color: rgba(0,0,0,1);
+  stroke: rgba(0,0,0,1);
+}
+
+.select {
+  border: solid 2px rgba(0,0,0,.3);
+  border-radius: 5px;
+}
+
+.item > svg {
+  width: 27px;
+  justify-content: center;
+}
+
+.item:hover > div {
+  color: rgba(0,0,0,.6);
+  cursor: default;
+  user-select: none;
+  
+}
+
+.item:hover > svg > path {
+  stroke: rgba(0,0,0,.6);
+}
+
+.item:active > div {
+  color: rgba(0,0,0,.8);
+}
+
+.item:active > svg > path {
+  stroke: rgba(0,0,0,.8);
+}

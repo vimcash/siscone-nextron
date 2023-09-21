@@ -1,6 +1,5 @@
-import MenuContainer  from '../features/GenericApp/containers/MenuContainer'
 
-const Home = () => <MenuContainer />
-
+const Home = ({dispatch, router}) => 
+  <></>
 
 export default Home

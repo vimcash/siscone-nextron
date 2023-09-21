@@ -1,0 +1,42 @@
+.container {
+  margin-bottom: 30px;
+  padding: 1rem 1.5rem;
+  border-radius: 7px;
+  display: flex;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 1.3125rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 0.875rem;
+}
+
+.text {
+  flex: 9;
+}
+
+.img {
+  margin-bottom: -3rem;
+  padding: 5px 0;
+}
+
+.product {
+  background: rgba(165, 194, 244, .3);
+}
+
+.invoice {
+  background: rgba(165, 232, 244, .3);
+}
+
+.accounting {
+  background: rgba(244, 209, 165, .3);
+}
+
+.contacts {
+  background: rgba(106, 107, 244, .3);
+}
