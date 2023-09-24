@@ -3,7 +3,7 @@ import { axios } from "../../../libs"
 const postAPILogin = 
   (inUser:any) => axios({
     type: 'POST',
-    url: 'https://api-siscone-backend-dev.vimcashcorp.com/user/login',
+    url: 'http://localhost:3000/user/login',
     data: inUser
   })
 

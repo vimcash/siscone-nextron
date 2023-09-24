@@ -17,6 +17,7 @@ class Controller {
     if(!this.instance)
       this.instance = new Controller(inDispatch, router)
     this.instance.refresh(state)
+    console.log(router.pathname)
     this.instance.currPage = router.pathname
     return this.instance
   }

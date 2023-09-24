@@ -14,13 +14,14 @@ class Controller {
     this.instance.refreshData(props)
     return this.instance
   }
-  refreshData({className, isTitle, text, textCenter, isSub, capitalize }:Interface) {
+  refreshData({className, isTitle, text, textCenter, isSub, capitalize, block }:Interface) {
     this.text = text
     this.style = `${style.container} ${className}`
     this.style = `${this.style} ${isTitle ? 'txt-title': ''}`.trim()
     this.style = `${this.style} ${textCenter ? 'txt-center': ''}`.trim()
     this.style = `${this.style} ${isSub ? 'txt-sub': ''}`.trim()
     this.style = `${this.style} ${capitalize ? 'txt-capitalize': ''}`.trim()
+    this.style = `${this.style} ${block ? 'd-block': ''}`.trim()
   } 
 
   public getStyle = () => this.style

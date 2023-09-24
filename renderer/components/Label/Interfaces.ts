@@ -3,6 +3,7 @@ interface Interface {
   isTitle?:boolean
   isSub?:boolean
   capitalize?: boolean
+  block?: boolean
   text:string
   className?: any
 }

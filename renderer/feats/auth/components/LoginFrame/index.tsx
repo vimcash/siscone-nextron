@@ -13,7 +13,9 @@ const LoginFrame = ({dispatch, router}) => {
     getUsername,
     getPassword,
     setUsername,
-    setPassword
+    setPassword,
+    login,
+    checkCurrUser
   } = Controller.getInstance(dispatch, false, router, useAppSelector(selectLogin))
   return <Div className={style.container}>
     <Icon size={35} color="black" icon="logo"/>
@@ -32,7 +34,12 @@ const LoginFrame = ({dispatch, router}) => {
       password />
     <Button
       primary 
-      title="Log in"/>
+      title="Log in"
+      onClick={login}/>
+    <Button
+      primary 
+      title="Check Cookie"
+      onClick={checkCurrUser}/>
   </Div>
 }
 

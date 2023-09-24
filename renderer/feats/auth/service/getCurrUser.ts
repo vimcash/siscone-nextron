@@ -3,7 +3,7 @@ import { axios } from "../../../libs";
 const getCurrUser = 
   () => axios({
     type: 'GET',
-    url: `https://api-dev.vimcashcorp.com/usuario/usuarioactual`
+    url: `http://localhost:3000/user/currentUser`
   })
 
 export default getCurrUser

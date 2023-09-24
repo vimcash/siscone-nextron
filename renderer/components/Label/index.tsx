@@ -10,8 +10,8 @@ export const Label =
       getText,
     } = Controller.getInstance(props)
     return (
-      <Div className={getStyle()}>
+      <span className={getStyle()}>
         {getText()}
-      </Div>
+      </span>
     )
   }

@@ -1,9 +1,10 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.target = 'electron-renderer';
-    }
-
-    return config;
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
   },
-};
+  webpack: (config) => {
+    return config
+  },
+}

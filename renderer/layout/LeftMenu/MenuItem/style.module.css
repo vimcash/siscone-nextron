@@ -6,13 +6,13 @@
   align-items: center;
 }
 
-.item > div {
+.item > span {
   position: relative;
   font-size: 14px;
   margin-left: 10px;
 }
 
-.item > svg > path, .item > div {
+.item > svg > path, .item > span {
   color: rgba(0,0,0,.5);
   stroke: rgba(0,0,0,.5);
 }
@@ -23,7 +23,7 @@
   border-radius: 5px;
 }
 
-.noSelect:active > svg > path, .item > div {
+.noSelect:active > svg > path, .item > span {
   color: rgba(0,0,0,.8);
   stroke: rgba(0,0,0,.8);
 }
@@ -34,14 +34,15 @@
   border-radius: 5px;
 }
 
-.noSelect:hover > svg > path, .item > div {
+.noSelect:hover > svg > path, .item > span {
   color: rgba(0,0,0,.7);
   stroke: rgba(0,0,0,.7);
 }
 
-.select > svg > path, .select > div {
+.select > svg > path, .select > span {
   color: rgba(0,0,0,1);
   stroke: rgba(0,0,0,1);
+  font-weight: 600;
 }
 
 .select {
@@ -54,7 +55,7 @@
   justify-content: center;
 }
 
-.item:hover > div {
+.item:hover > span {
   color: rgba(0,0,0,.6);
   cursor: default;
   user-select: none;
@@ -65,7 +66,7 @@
   stroke: rgba(0,0,0,.6);
 }
 
-.item:active > div {
+.item:active > span {
   color: rgba(0,0,0,.8);
 }
 

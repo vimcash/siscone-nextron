@@ -1,23 +1,28 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { useAppDispatch } from '../../hooks'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import style from './style.module.css'
 import { Header } from '../Header'
 import { LeftMenu } from '../LeftMenu'
-import { Div } from '../../components'
+import { Div, Label, Spinner } from '../../components'
 import Popup from '../Popup'
+import { selectAppReady } from '../../data/state'
+import Controller from './controller'
 
 export const AppFrame = ({Component, pageProps}:any) => {
-  const dispatch = useAppDispatch()
-  const router = useRouter()
-  const isLogin = router.pathname != "/auth/login"
+  const {
+    getDispatch,
+    getRouter,
+    getAppReady,
+    getInLogin
+  } = Controller.getInstance(useAppDispatch(), useAppSelector(selectAppReady), useRouter())
   return <Div className={style.container}> 
-    <Popup dispatch={dispatch}/>
-    {isLogin ? <LeftMenu dispatch={dispatch} router={router} /> : <></>}
+    <Popup dispatch={getDispatch()}/>
+    {getInLogin() ? <></> : <LeftMenu dispatch={getDispatch()} router={getRouter()} /> }
     <Div className={style.contentContainer}>
-      {isLogin ? <Header dispatch={dispatch}/> : <></>}
+      {getInLogin() ? <></> : <Header dispatch={getDispatch()}/> }
       <Div className={style.content}>
-        <Component dispatch={dispatch} router={router} {...pageProps} />
+        <Component dispatch={getDispatch()} router={getRouter()} {...pageProps} />
       </Div>
     </Div>
   </Div>

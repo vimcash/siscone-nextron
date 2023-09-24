@@ -30,7 +30,7 @@ export const  Table = ({titles, dataSource, joinCategory, className}:any) => {
                 {
                   titles.map(() => (
                     <td scope="row" key={column}>{joinCategory && column == 0 ? <Div>
-                      <Label text={columByIndex(object, column++)} />
+                      <Label text={columByIndex(object, column++)} block/>
                       <Label text={columByIndex(object, column++)} isSub/>
                     </Div> : isDate(columByIndex(object, column))? formatDate(columByIndex(object, column++), "dd/MM/yyyy hh:mm") : columByIndex(object, column++)}</td>
                   ))
